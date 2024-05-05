@@ -1,0 +1,11 @@
+.centeredIcon {
+    display: flex;
+    align-items: center;
+}
+
+.justifyBetween {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+

@@ -1,24 +1,37 @@
-import { Container } from 'react-bootstrap';
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import PostForm from './components/PostForm';
+import "./types.ts"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import { Container } from "react-bootstrap";
+import { RetroNav, Footer } from './components';
+import HomePage from './pages/home/HomePage';
+import ProductPage from './pages/products/ProductPage';
+import SearchPage from './pages/search/SearchPage/SearchPage.tsx';
+import CartPage from './pages/cart/CartPage.tsx';
+
+
 
 function App() {
 
+  const [results, setResults] = useState<Product[]>([])
+
   return (
-    <>
-      <Container>
-        <header>
-          <h1>Pepe</h1>
-        </header>
-        <main>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quidem officiis voluptate expedita reiciendis officia enim placeat molestias quisquam atque iste maiores maxime, assumenda tempore cumque cupiditate nulla quos ea?</p>
-          <PostForm></PostForm>
-        </main>
-        <footer></footer>
+    <BrowserRouter>
+      <RetroNav setResults={setResults}/>
+      <Container as="main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchPage products={ results } />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+        </Routes>
       </Container>
-    </>
+      <Footer />
+    </BrowserRouter>
+
   )
 }
 
 export default App
+
+// fetch('https://api.mobygames.com/v1/games/random?api_key=moby_8Rhj6gMiLqiDLcvWtnNrB3CluQ9', { method: "GET" }).then(res => console.log(res.json()))

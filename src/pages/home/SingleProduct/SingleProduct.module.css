@@ -1,0 +1,16 @@
+.ProductCardImage {
+    object-fit: cover;
+    height: 325px;
+}
+
+.TextBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.CardColumnBetween {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
