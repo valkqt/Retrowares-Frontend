@@ -9,21 +9,34 @@ import CartPopup from './CartPopup/CartPopup';
 import { useState } from 'react';
 import useClickOutside from '../../methods/useClickOutside.ts';
 import classNames from 'classnames';
+import {Product} from "@/types";
+import { useCart } from '@/contexts';
 
 interface NavbarProps {
     setResults: (results: Product[]) => void;
-    cart: Product[];
 }
 
 
-function RetroNav({ setResults, cart }: NavbarProps) {
+function RetroNav({ setResults, }: NavbarProps) {
     const [popupShow, setPopupShow] = useState(false)
+    const [cart] = useCart();
+
+    console.log("rerender", cart)
 
     function handleClickOutside() {
         setPopupShow(false);
     }
 
-    const ref = useClickOutside(handleClickOutside);
+    const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
+
+    //const [cartItems, setCartItems] = useState<CartItem[]>([])
+
+    // useEffect(() => {
+    //     const storage = localStorage.getItem("cart")
+    //     const cart = storage !== null ? JSON.parse(storage) : []
+    //     setCartItems(cart)
+    // }, [])
+
 
     return (
         <Container as="header">
@@ -38,13 +51,17 @@ function RetroNav({ setResults, cart }: NavbarProps) {
                         <div className='d-flex gap-3'>
                             <Searchbar setResults={setResults} />
                             <div ref={ref} className={classNames(css.centeredIcon, css.popupContainer)}
-                                onClick={() => setPopupShow(!popupShow)}>
-                                    
+                                onClick={() => setPopupShow(true)}>
+
                                 <Cart4 size={20} className={css.popupContainer} />
-                                <div className={css.itemCounter}>
-                                    <div>{cart.length > 0 && cart.length}</div>
+                                <div className={css.itemCounter} style={cart.length > 0 ? { display: 'block' } : { display: "none" }}>
+                                    <div >
+                                        {cart.length}</div>
                                 </div>
-                                {popupShow && <CartPopup items={cart} />}
+
+                                {popupShow && <>
+                                    <CartPopup items={cart} />
+                                </>}
 
                             </div>
 

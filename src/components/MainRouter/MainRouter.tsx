@@ -1,0 +1,30 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Footer from "../Footer/Footer"
+import RetroNav from "../Navbar/RetroNav"
+import HomePage from "@/pages/home/HomePage"
+import SearchPage from "@/pages/search/SearchPage/SearchPage"
+import CartPage from "@/pages/cart/CartPage"
+import ProductPage from "@/pages/products/ProductPage"
+import { Container } from "react-bootstrap"
+import { useState } from "react"
+import { Product } from "@/types"
+
+
+export default function MainRouter() {
+    const [results, setResults] = useState<Product[]>([])
+
+    return (<BrowserRouter>
+        <RetroNav setResults={setResults} />
+        <Container as="main">
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search" element={<SearchPage products={results} />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/products/:id" element={<ProductPage />} />
+            </Routes>
+        </Container>
+
+        <Footer />
+    </BrowserRouter >
+    )
+}

@@ -1,4 +1,4 @@
-interface Product {
+export interface Product {
     id: number,
     title: string,
     description?: string,
@@ -10,12 +10,15 @@ interface Product {
     price: number,
 }
 
-interface CartItem {
+export interface CartItem {
     productId: Product['id'];
-    qty: number;
+    title: string,
+    image: string,
+    price: number,
+    quantity: number;
 }
 
-interface Cart {
+export interface Cart {
     userId: string;
     items: CartItem[];
 }

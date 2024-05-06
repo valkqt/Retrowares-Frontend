@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import SingleProduct from "../SingleProduct/SingleProduct.tsx";
 import "../../../types.ts"
 import css from "./HomePage.module.css"
+import { Product } from "@/types";
+
 // import Test from "../../../components/_temp/Test.tsx";
 
 
