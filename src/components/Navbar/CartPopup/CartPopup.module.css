@@ -1,0 +1,11 @@
+.cartPopup {
+    position: absolute;
+    top: 1rem;
+    right: 50px;
+    background-color: rgb(19, 19, 19);
+    z-index: 10;
+    padding: 1rem;
+    overflow: auto;
+    height: 325px;
+    width: 325px;
+}

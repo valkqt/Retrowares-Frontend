@@ -43,7 +43,7 @@ function SingleProduct({ product }: { product: Product }) {
                                 {product.platform}
                             </Link>
                         </p>
-                        <p>{product.price}$</p>
+                        <p>{product.price.toFixed(2)}$</p>
                     </div>
                     <div className={css.TextBetween}>
                         <div>{product.genre}</div>

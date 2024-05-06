@@ -5,13 +5,25 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import css from "./RetroNav.module.css"
 import Searchbar from './Searchbar';
+import CartPopup from './CartPopup/CartPopup';
+import { useState } from 'react';
+import useClickOutside from '../../methods/useClickOutside.ts';
+import classNames from 'classnames';
 
 interface NavbarProps {
     setResults: (results: Product[]) => void;
+    cart: Product[];
 }
 
 
-function RetroNav({ setResults }: NavbarProps ) {
+function RetroNav({ setResults, cart }: NavbarProps) {
+    const [popupShow, setPopupShow] = useState(false)
+
+    function handleClickOutside() {
+        setPopupShow(false);
+    }
+
+    const ref = useClickOutside(handleClickOutside);
 
     return (
         <Container as="header">
@@ -23,9 +35,18 @@ function RetroNav({ setResults }: NavbarProps ) {
                         <div className='d-flex'>
                             {/* <Link to="/" className='nav-link'>Home</Link> */}
                         </div>
-                        <div className='d-flex'>
-                            <Searchbar setResults={setResults}/>
-                            <Link to="/cart" className={'nav-link ' + css.centeredIcon} ><Cart4 size={20}></Cart4></Link>
+                        <div className='d-flex gap-3'>
+                            <Searchbar setResults={setResults} />
+                            <div ref={ref} className={classNames(css.centeredIcon, css.popupContainer)}
+                                onClick={() => setPopupShow(!popupShow)}>
+                                    
+                                <Cart4 size={20} className={css.popupContainer} />
+                                <div className={css.itemCounter}>
+                                    <div>{cart.length > 0 && cart.length}</div>
+                                </div>
+                                {popupShow && <CartPopup items={cart} />}
+
+                            </div>
 
                         </div>
                     </Nav>

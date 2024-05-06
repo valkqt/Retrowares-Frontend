@@ -9,3 +9,21 @@
     width: 100%;
 }
 
+.popupContainer {
+    position: relative;
+}
+
+.itemCounter {
+    position: absolute;
+    top: 0;
+    right: -0.5rem;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: red;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+}

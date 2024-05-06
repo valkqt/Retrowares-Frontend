@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SingleProduct from "../SingleProduct/SingleProduct.tsx";
 import "../../../types.ts"
 import css from "./HomePage.module.css"
-import Test from "../../../components/_temp/Test.tsx";
+// import Test from "../../../components/_temp/Test.tsx";
 
 
 function HomePage() {

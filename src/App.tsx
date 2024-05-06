@@ -1,7 +1,7 @@
 import './App.css'
 import "./types.ts"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container } from "react-bootstrap";
 import { RetroNav, Footer } from './components';
 import HomePage from './pages/home/HomePage';
@@ -14,15 +14,23 @@ import CartPage from './pages/cart/CartPage.tsx';
 function App() {
 
   const [results, setResults] = useState<Product[]>([])
+  const [cartItems, setCartItems] = useState<Product[]>([])
+    
+  useEffect(() => {
+      const storage = localStorage.getItem("cart")
+      const cart = storage !== null ? JSON.parse(storage) : []
+      setCartItems(cart)
+  }, [])
+
 
   return (
     <BrowserRouter>
-      <RetroNav setResults={setResults}/>
+      <RetroNav setResults={setResults} cart={cartItems}/>
       <Container as="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage products={ results } />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart" element={<CartPage items={cartItems}/>} />
           <Route path="/products/:id" element={<ProductPage />} />
         </Routes>
       </Container>
