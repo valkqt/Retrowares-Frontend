@@ -8,6 +8,22 @@ header a {
     color: white !important;
 }
 
+.toggleDisplay {
+    display: none;
+}
+
+
+.neuteredLink {
+    text-decoration: none;
+}
+
+
+
+.neuteredLink:hover {
+    color: rgb(121, 0, 0);
+    transition: 0.15s linear;
+}
+
 .CardLink {
     text-decoration: none;
     color: black;
@@ -18,3 +34,13 @@ header a {
     transition: 0.15s linear;
 }
 
+
+@keyframes opacity-transition {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

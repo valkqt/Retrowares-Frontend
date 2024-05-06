@@ -18,6 +18,7 @@ function HomePage() {
     return (
         <>
             {/* <Test /> */}
+            <h1 className="text-center">PC-98 Collection</h1>
             <div className={css.CardWrapper}>
                 {products.map(elem => {
                     return <SingleProduct key={elem.id} product={elem}></SingleProduct>

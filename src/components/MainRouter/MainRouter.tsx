@@ -21,6 +21,7 @@ export default function MainRouter() {
                 <Route path="/search" element={<SearchPage products={results} />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/products/:id" element={<ProductPage />} />
+                <Route path="/checkout" element={<p>sono checkout!</p>}/>
             </Routes>
         </Container>
 

@@ -21,9 +21,10 @@ function RetroNav({ setResults, }: NavbarProps) {
     const [popupShow, setPopupShow] = useState(false)
     const [cart] = useCart();
 
-    console.log("rerender", cart)
+
 
     function handleClickOutside() {
+
         setPopupShow(false);
     }
 
@@ -43,13 +44,13 @@ function RetroNav({ setResults, }: NavbarProps) {
                         </div>
                         <div className='d-flex gap-3'>
                             <Searchbar setResults={setResults} />
-                            <div ref={ref} className={classNames(css.centeredIcon, css.popupContainer)}
-                                onClick={() => setPopupShow(true)}>
-
-                                <Cart4 size={20} className={css.popupContainer} />
-                                <div className={css.itemCounter} style={cart.length > 0 ? { display: 'flex' } : { display: "none" }}>
-                                    <div >
-                                        {cart.length}
+                            <div ref={ref} className={classNames(css.centeredIcon, css.popupContainer)}>
+                                <div onClick={() => setPopupShow(true)}>
+                                    <Cart4 size={20} className={css.popupContainer} />
+                                    <div className={css.itemCounter} style={cart.length > 0 ? { display: 'flex' } : { display: "none" }}>
+                                        <div>
+                                            {cart.length}
+                                        </div>
                                     </div>
                                 </div>
 

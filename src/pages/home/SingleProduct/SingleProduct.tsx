@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import "../../../types"
+import "@/types"
 import css from "./SingleProduct.module.css"
 import Card from 'react-bootstrap/Card';
 import { Button } from "react-bootstrap";
-import { Cart4, PlusLg } from "react-bootstrap-icons";
+import { Cart4 } from "react-bootstrap-icons";
 import { Product } from "@/types";
 import { useCart } from "@/contexts/CartContext";
 
@@ -35,7 +35,7 @@ function SingleProduct({ product }: { product: Product }) {
                     </div>
                     <div className={css.TextBetween}>
                         <div>{product.genre}</div>
-                        <Button className="btn-danger" onClick={() => {addToCart(product)}}> <PlusLg size={16}></PlusLg><Cart4 size={16}></Cart4></Button>
+                        <Button className="btn-danger" onClick={() => {addToCart(product)}}> <Cart4 size={16}></Cart4></Button>
                     </div>
                 </div>
             </Card.Body>
