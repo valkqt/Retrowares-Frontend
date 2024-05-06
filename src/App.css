@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+    color: white;
+    /* font-family: "Press Start 2P", system-ui; */
+}
+
+header a {
+    color: white !important;
+}
+
+.CardLink {
+    text-decoration: none;
+    color: black;
+}
+
+.CardLink:hover {
+    color: rgb(121, 0, 0);
+    transition: 0.15s linear;
+}
+

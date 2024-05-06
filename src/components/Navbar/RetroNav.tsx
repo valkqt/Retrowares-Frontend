@@ -9,7 +9,7 @@ import CartPopup from './CartPopup/CartPopup';
 import { useState } from 'react';
 import useClickOutside from '../../methods/useClickOutside.ts';
 import classNames from 'classnames';
-import {Product} from "@/types";
+import { Product } from "@/types";
 import { useCart } from '@/contexts';
 
 interface NavbarProps {
@@ -29,13 +29,6 @@ function RetroNav({ setResults, }: NavbarProps) {
 
     const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
 
-    //const [cartItems, setCartItems] = useState<CartItem[]>([])
-
-    // useEffect(() => {
-    //     const storage = localStorage.getItem("cart")
-    //     const cart = storage !== null ? JSON.parse(storage) : []
-    //     setCartItems(cart)
-    // }, [])
 
 
     return (
@@ -54,9 +47,10 @@ function RetroNav({ setResults, }: NavbarProps) {
                                 onClick={() => setPopupShow(true)}>
 
                                 <Cart4 size={20} className={css.popupContainer} />
-                                <div className={css.itemCounter} style={cart.length > 0 ? { display: 'block' } : { display: "none" }}>
+                                <div className={css.itemCounter} style={cart.length > 0 ? { display: 'flex' } : { display: "none" }}>
                                     <div >
-                                        {cart.length}</div>
+                                        {cart.length}
+                                    </div>
                                 </div>
 
                                 {popupShow && <>

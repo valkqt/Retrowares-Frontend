@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 import MainRouter from './components/MainRouter/MainRouter.tsx';
 import { CartProvider } from '@/contexts';
