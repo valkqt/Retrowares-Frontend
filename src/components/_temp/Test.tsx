@@ -1,13 +1,16 @@
+import { getRelatedProducts } from "@/api";
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 function Test() {
 
-    function tess() {
-        fetch("https://localhost:7131/api/Products/pepe", { headers: { "Content-Type": "application/json" }, method: "GET"})
-            .then(res => res.json()).then(data => { console.log(JSON.parse(data.pepe)) })
-    }
+    useEffect(() => {
+        getRelatedProducts("", "Adventure", "PC-98").then(data => {console.log(data)})
+    }, [])
+
     return <div>
-        <Button onClick={() => {tess()}}>Test</Button>
+        <p>sono test!</p>
+        <Button>Test search query</Button>
     </div>
 }
 

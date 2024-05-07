@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import SingleProduct from "../SingleProduct/SingleProduct.tsx";
-import "../../../types.ts"
-import css from "./HomePage.module.css"
 import { Product } from "@/types";
 
 // import Test from "../../../components/_temp/Test.tsx";
@@ -19,7 +17,7 @@ function HomePage() {
         <>
             {/* <Test /> */}
             <h1 className="text-center">PC-98 Collection</h1>
-            <div className={css.CardWrapper}>
+            <div className="CardWrapper">
                 {products.map(elem => {
                     return <SingleProduct key={elem.id} product={elem}></SingleProduct>
                 })}

@@ -15,6 +15,7 @@ header a {
 
 .neuteredLink {
     text-decoration: none;
+    color: white;
 }
 
 
@@ -34,13 +35,14 @@ header a {
     transition: 0.15s linear;
 }
 
+section {
+    margin-bottom: 2rem;
+}
 
-@keyframes opacity-transition {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.CardWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+    margin-bottom: 96px;
 }

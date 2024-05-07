@@ -3,6 +3,7 @@ import css from "./CartPopup.module.css"
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { CartItem } from "@/types";
+import "@/App.css"
 
 export default function CartPopup({ items }: { items: CartItem[] }) {
 

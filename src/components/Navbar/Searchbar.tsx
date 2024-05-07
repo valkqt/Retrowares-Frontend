@@ -4,6 +4,7 @@ import { Search } from "react-bootstrap-icons"
 import { useNavigate } from "react-router-dom"
 import css from "./RetroNav.module.css"
 import { getSearchResults } from "../../api/index"
+import {Product} from "@/types"
 
 interface SearchbarProps {
     setResults: (results: Product[]) => void;

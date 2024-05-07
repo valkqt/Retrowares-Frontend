@@ -5,7 +5,7 @@ export interface Product {
     genre: string,
     platform: string,
     image: string,
-    screenshots: string[],
+    screenshots: Screenshot[],
     officialUrl?: string,
     price: number,
 }
@@ -18,7 +18,7 @@ export interface CartItem {
     quantity: number;
 }
 
-export interface Cart {
-    userId: string;
-    items: CartItem[];
+export interface Screenshot {
+    id: number,
+    url: string,
 }

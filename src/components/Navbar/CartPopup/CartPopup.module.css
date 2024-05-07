@@ -7,6 +7,7 @@
     padding: 1rem;
     width: 325px;
     border-radius: 0.325rem;
+    animation: popup-transition 0.15s ease-out;
 }
 
 .cartItemContainer {
@@ -38,4 +39,17 @@
     justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.582);
 
+}
+
+
+@keyframes popup-transition {
+    from {
+        opacity: 0;
+        transform: translateY(-30%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

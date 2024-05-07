@@ -1,12 +1,15 @@
 // import css from "./SearchPage.module.css"
-import "../../../types"
-
+import SingleProduct from "@/pages/home/SingleProduct/SingleProduct";
+import { Product } from "@/types"
 function SearchPage({ products }: { products: Product[] }) {
-    return <div>
+    return <>
+    <h1 className="text-center">Search Results</h1>
+    <div className="CardWrapper">
         {products.map(p => {
-            return <p>{p.title}</p>
+            return <SingleProduct key={p.id} product={p} />
         })}
     </div>
+    </>
 }
 
 export default SearchPage;
