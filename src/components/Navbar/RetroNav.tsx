@@ -48,7 +48,7 @@ function RetroNav({ setResults, }: NavbarProps) {
                                 <div onClick={() => setPopupShow(true)}>
                                     <Cart4 size={20} className={css.popupContainer} />
                                     <div className={css.itemCounter} style={cart.length > 0 ? { display: 'flex' } : { display: "none" }}>
-                                        <div>
+                                        <div className='GenericFont'>
                                             {cart.length}
                                         </div>
                                     </div>

@@ -1,7 +1,26 @@
 body {
     background-color: black;
     color: white;
-    /* font-family: "Press Start 2P", system-ui; */
+}
+
+header {
+    height: 80px;
+}
+
+h1, h2, h3, h4 {
+    font-family: "DosV";
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+p, div {
+    font-family: "NECAPC3" ;
+}
+
+.GenericFont {
+    font-family: "ApricotXenC" !important;
 }
 
 header a {
@@ -12,16 +31,13 @@ header a {
     display: none;
 }
 
-
 .neuteredLink {
     text-decoration: none;
     color: white;
 }
 
-
-
 .neuteredLink:hover {
-    color: rgb(121, 0, 0);
+    color: rgb(255, 0, 0);
     transition: 0.15s linear;
 }
 
@@ -45,4 +61,70 @@ section {
     justify-content: space-evenly;
     gap: 2rem;
     margin-bottom: 96px;
+}
+
+/* ***************CUSTOM COMPONENTS************** */
+
+.CustomCard {
+    background-color: rgb(20, 20, 20);
+    border: 1px solid rgba(155, 155, 155, 0.7);
+    border-radius: 0.175rem;
+    padding: 1rem;
+}
+
+
+.darkHeader {
+    border-bottom: 1px solid rgba(155, 155, 155, 0.7);
+    padding-bottom: 1rem;
+}
+
+.productPrice {
+    font-size: 1.5rem;
+    color: greenyellow
+}
+
+.productPriceSmall {
+    color: greenyellow;
+    font-size: 1.25rem;
+}
+
+.flexBetween {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+
+.pepe {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+
+}
+
+.pepe2 {
+    flex-grow: 1;
+}
+
+/****************** BOOTSTRAP OVERRIDE *******************/
+
+.btn-danger {
+    background-color: rgb(255, 0, 0); 
+}
+
+.form-control {
+    background-color: rgba(40, 40, 40, 1);
+    color: white;
+    border: 1px solid rgba(155, 155, 155, 0.705);
+}
+
+.form-control:focus {
+    background-color: rgba(40, 40, 40, 1);
+    box-shadow: none;
+    border: 1px solid white;
+
+}
+
+.form-control::placeholder {
+    color: white;
 }

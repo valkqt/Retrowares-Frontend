@@ -53,11 +53,11 @@ function ProductPage() {
                 <img src={product.image} className="img-fluid" />
             </div>
             <div className={css.productInfo}>
-                <div className="d-flex justify-content-between">
-                    <div className={css.productPrice}>{product.price.toFixed(2)}$</div>
+                <div className="flexBetween mb-3">
+                    <div className="productPrice">{product.price.toFixed(2)}$</div>
                     <div className="d-flex gap-3">
-                        <div className={css.inStock}>
-                            <div>In stock: 69</div>
+                        <div className={classNames(css.inStock)}>
+                            <div className="GenericFont">In stock: 69</div>
                         </div>
 
 
@@ -69,8 +69,7 @@ function ProductPage() {
                 </div>
                 <Interweave content={product.description} />
 
-
-                <dl >
+                <dl>
                     <dt>Genre:</dt>
                     <dd>{product.genre}</dd>
                     <dt>Platform:</dt>
@@ -83,7 +82,7 @@ function ProductPage() {
             </div>
         </section>
         <section>
-            <h5>Sample Screenshots</h5>
+            <h2 className="text-center darkHeader">Sample Screenshots</h2>
             <div className={css.relatedSlider}>
                 {product.screenshots.slice(0, 3).map(s => {
                     return (
@@ -96,7 +95,7 @@ function ProductPage() {
 
         </section>
         <aside>
-            <h5>Related Products</h5>
+            <h2 className="text-center darkHeader">Related Products</h2>
             <div className={css.relatedSlider}>
                 {related.map(r => {
                     return (
@@ -105,7 +104,7 @@ function ProductPage() {
                                 <div>
                                     <img src={r.image} className={css.relatedImage} />
                                 </div>
-                                <p>{r.title}</p>
+                                <div>{r.title}</div>
                             </Link>
                         </div>
                     )

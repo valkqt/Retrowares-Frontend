@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "NECAPC3";
+    src:
+        url("./NECAPC3/Web437_NEC_APC3_8x16.woff"),
+        url("./NECAPC3/Web437_NEC_APC3_8x16-2x.woff"),
+        url("./NECAPC3/Web437_NEC_APC3_8x8-2y.woff"),
+        url("./NECAPC3/Web437_NEC_APC3_8x8.woff");
+}
+
+@font-face {
+    font-family: "Wang Pro";
+    src: url("./Wang/Web437_Wang_Pro_Mono.woff")
+}
+
+@font-face {
+    font-family: "IBM";
+    src: url("./IBM/Web437_IBM_PS-55_re.woff");
+}
+
+@font-face {
+    font-family: "Cordata";
+    src: url("./Cordata/Web437_Cordata_PPC-400.woff");
+}
+
+@font-face {
+    font-family: "ToshibaSat";
+    src: url("./ToshibaSat/Web437_ToshibaSat_9x16.woff");
+}
+
+@font-face {
+    font-family: "Wyse";
+    src: url("./Wyse/Web437_Wyse700a-2y.woff");
+}
+
+@font-face {
+    font-family: "ApricotXenC";
+    src: url("./ApricotXenC/Web437_ApricotXenC.woff");
+}
+
+@font-face {
+    font-family: "DosV";
+    src: url("./DosV/Web437_DOS-V_re_ANK30.woff");
+}

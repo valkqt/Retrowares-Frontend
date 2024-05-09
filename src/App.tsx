@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import './assets/fonts/fonts.css'
 import MainRouter from './components/MainRouter/MainRouter.tsx';
 import { CartProvider } from '@/contexts';
 

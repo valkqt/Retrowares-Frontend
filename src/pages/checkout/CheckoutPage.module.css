@@ -1,0 +1,25 @@
+.CheckoutImage {
+    height: 120px;
+    width: 80px;
+    object-fit: cover;
+}
+
+.ProductContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.OrderContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+}
+
+.CheckoutWrapper {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
