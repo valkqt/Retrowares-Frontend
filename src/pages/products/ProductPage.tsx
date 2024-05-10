@@ -8,6 +8,7 @@ import { Interweave } from "interweave";
 import { Button } from "react-bootstrap";
 import { Cart4 } from "react-bootstrap-icons";
 import { useCart } from "@/contexts/CartContext";
+import ScreenshotModal from "./ScreenshotModal/ScreenshotModal";
 
 
 function ProductPage() {
@@ -15,10 +16,9 @@ function ProductPage() {
     const [product, setProduct] = useState<Product>()
     const [isLoading, setIsLoading] = useState(true);
     const [related, setRelated] = useState<Product[]>([])
+    const [screenshotShow, setScreenshotShow] = useState(false);
+    const [highlight, setHighlight] = useState("")
     const [, addToCart] = useCart();
-
-
-    console.log("render")
 
     useEffect(() => {
         if (params.id) {
@@ -57,7 +57,7 @@ function ProductPage() {
                     <div className="productPrice">{product.price.toFixed(2)}$</div>
                     <div className="d-flex gap-3">
                         <div className={classNames(css.inStock)}>
-                            <div className="GenericFont">In stock: 69</div>
+                            <div className="GenericFont">In stock: {product.stock}</div>
                         </div>
 
 
@@ -87,11 +87,21 @@ function ProductPage() {
                 {product.screenshots.slice(0, 3).map(s => {
                     return (
                         <div key={s.id}>
-                            <img src={s.url} className={css.productScreenshot} />
+                            <div onClick={() => {setScreenshotShow(true); setHighlight(s.url)}}>
+                                <img src={s.thumbnail} className={css.productScreenshot} />
+
+                            </div>
                         </div>
                     )
                 })}
             </div>
+            <ScreenshotModal
+
+                show={screenshotShow}
+                onHide={() => setScreenshotShow(false)}
+                image={highlight}
+            />
+
 
         </section>
         <aside>

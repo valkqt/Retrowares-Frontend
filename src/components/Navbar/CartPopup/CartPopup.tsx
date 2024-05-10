@@ -4,33 +4,40 @@ import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { CartItem } from "@/types";
 import "@/App.css"
+import QuantityHandler from "@/pages/checkout/QuantityHandler/QuantityHandler";
+import RemoveHandler from "@/pages/checkout/RemoveHandler/RemoveHandler";
 
 export default function CartPopup({ items }: { items: CartItem[] }) {
 
     return <div className={classNames(css.cartPopup)}>
         <div className={css.cartHeader}>
             <h5>Cart</h5>
-            <Link to="/cart">View Cart</Link>
 
         </div>
         <div className={css.cartItemContainer}>
             {items.length > 0 ? items.map(i => {
                 return (
-                    <Link key={i.productId} to={`/Products/${i.productId}`} className="neuteredLink">
-                        <div className="d-flex gap-3">
-                            <div className={css.cartImage} style={{ backgroundImage: `url(${i.image})` }}>
+                    <div className="d-flex gap-3">
+                        <div className={css.cartImage} style={{ backgroundImage: `url(${i.image})` }}>
 
-                            </div>
-                            <div className={css.cartItemText}>
-                                <p>{i.title}</p>
-                                <div>
-                                    <p className="text-end">{i.quantity}x</p>
-                                    <p>{(i.price * i.quantity).toFixed(2)}$</p>
-
+                        </div>
+                        <div className={css.ItemRecap}>
+                            <div className={classNames(css.cartItemText, "flexBetween gap-3")}>
+                                <div><Link key={i.productId} to={`/Products/${i.productId}`} className="neuteredLink">
+                                    {i.title}
+                                </Link>
                                 </div>
+                                <RemoveHandler productId={i.productId} key={i.productId} />
+                            </div>
+                            <div className="flexBetween gap-3">
+                                <div className="productPriceSmallest">{(i.price * i.quantity).toFixed(2)}$</div>
+                                <QuantityHandler item={i} key={i.productId} />
+
+
                             </div>
                         </div>
-                    </Link>
+
+                    </div>
                 )
             }) : (<p>Your cart is empty!</p>)}
         </div>

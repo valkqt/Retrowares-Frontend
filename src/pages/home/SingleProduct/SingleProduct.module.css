@@ -1,6 +1,8 @@
 .ProductCardImage {
     object-fit: cover;
     height: 325px;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .TextBetween {
@@ -13,5 +15,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.CardContents {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1
 }
 

@@ -13,8 +13,15 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
+}
+
+.ItemRecap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
 }
 
 .CheckoutWrapper {

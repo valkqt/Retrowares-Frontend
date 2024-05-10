@@ -34,7 +34,7 @@ function RetroNav({ setResults, }: NavbarProps) {
 
     return (
         <Container as="header">
-            <Navbar expand="lg">
+            <Navbar expand="lg" sticky="top">
                 <Link to="/" className='navbar-brand'>Retrowares</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

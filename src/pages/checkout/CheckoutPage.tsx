@@ -7,13 +7,13 @@ import { CartItem } from "@/types";
 import { useCart } from "@/contexts/index";
 import { Button } from "react-bootstrap";
 import QuantityHandler from "./QuantityHandler/QuantityHandler";
-import { XLg } from "react-bootstrap-icons";
+import RemoveHandler from "./RemoveHandler/RemoveHandler";
 
 
 export default function CheckoutPage() {
     const [message, setMessage] = useState("");
     const [searchParams] = useSearchParams();
-    const [cart,] = useCart();
+    const [cart] = useCart();
 
     async function checkoutAction(payload: CartItem[]): Promise<string> {
 
@@ -48,23 +48,26 @@ export default function CheckoutPage() {
                 <h2 className="darkHeader">Cart</h2>
                 {cart.map(i => {
                     return (
-                        <div key={i.productId}>
-                            <Link to={`/Products/${i.productId}`} className={classNames(css.ProductContainer, "neuteredLink")}>
-                                <div>
+                        <div key={i.productId} className={classNames(css.ProductContainer)}>
+                            <div>
+                                <Link to={`/Products/${i.productId}`} className="neuteredLink">
                                     <img src={i.image} className={css.CheckoutImage} />
+                                </Link>
+                            </div>
+                            <div className={css.ItemRecap}>
+                                <div className="flexBetween gap-5">
+                                    <h4>
+                                        <Link to={`/Products/${i.productId}`} className="neuteredLink">
+                                            {i.title}
+                                        </Link>
+                                    </h4>
+                                    <RemoveHandler productId={i.productId} />
                                 </div>
-                                <div className="flex-grow-1">
-                                    <div className="flexBetween">
-                                        <h4>{i.title}</h4>
-                                            <XLg />
-                                    </div>
-                                    <div className="flexBetween">
-                                        <div className="productPriceSmall">{i.price}$</div>
-
-                                        <QuantityHandler quantity={i.quantity} />
-                                    </div>
+                                <div className="flexBetween gap-5">
+                                    <div className="productPriceSmall">{i.price.toFixed(2)}$</div>
+                                    <QuantityHandler item={i} />
                                 </div>
-                            </Link>
+                            </div>
                         </div>
                     )
                 }
@@ -75,14 +78,14 @@ export default function CheckoutPage() {
                 <div>
                     {cart.map(i => {
                         return (
-                            <div className="flexBetween">
+                            <div className="flexBetween gap-5">
                                 <p>{i.title}</p>
                                 <div>x{i.quantity}</div>
                             </div>
                         )
                     })}
                 </div>
-                <div className="flexBetween">
+                <div className="flexBetween gap-5">
                     <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
                     <form onSubmit={(e) => {
                         e.preventDefault();

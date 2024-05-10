@@ -8,6 +8,8 @@ export interface Product {
     screenshots: Screenshot[],
     officialUrl?: string,
     price: number,
+    stock: number,
+    discountPercentage: number,
 }
 
 export interface CartItem {
@@ -21,4 +23,5 @@ export interface CartItem {
 export interface Screenshot {
     id: number,
     url: string,
+    thumbnail: string,
 }

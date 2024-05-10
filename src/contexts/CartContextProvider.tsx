@@ -4,7 +4,6 @@ import { CartContext } from "./CartContext";
 
 export function CartProvider({ children }: PropsWithChildren) {
     const [cart, setCart] = useState<CartItem[]>([]);
-    console.log("Provider render", cart)
 
     useEffect(() => {
         const storage = localStorage.getItem("cart")
@@ -22,7 +21,7 @@ export function CartProvider({ children }: PropsWithChildren) {
             localStorage.setItem("cart", JSON.stringify(newCart));
             return;
         }
-        
+
         const newCart = [...cart, {
             title: product.title,
             productId: product.id,
@@ -35,8 +34,41 @@ export function CartProvider({ children }: PropsWithChildren) {
         localStorage.setItem("cart", JSON.stringify(newCart));
     }
 
+    function removeFromCart(id: number): void {
+        const existingItemIndex = cart.findIndex(i => i.productId === id)
+
+        if (existingItemIndex >= 0) {
+            cart.splice(existingItemIndex, 1);
+            const newCart = [...cart];
+            setCart(newCart);
+            localStorage.setItem("cart", JSON.stringify(newCart));
+            return;
+        }
+
+        return;
+    }
+
+    function modifyQuantity(id: number, operation: number): void {
+        const existingItemIndex = cart.findIndex(i => i.productId === id)
+
+        if (existingItemIndex >= 0) {
+            cart[existingItemIndex].quantity += operation;
+
+            if (cart[existingItemIndex].quantity < 1) {
+                cart[existingItemIndex].quantity = 1
+            }
+
+            const newCart = [...cart];
+            setCart(newCart);
+            localStorage.setItem("cart", JSON.stringify(newCart));
+            return;
+        }
+
+        return;
+    }
+
     return (
-        <CartContext.Provider value={[cart, addToCart]}>
+        <CartContext.Provider value={[cart, addToCart, removeFromCart, modifyQuantity]}>
             {children}
         </CartContext.Provider>
     )

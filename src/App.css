@@ -84,32 +84,45 @@ section {
 }
 
 .productPriceSmall {
-    color: greenyellow;
+    color: var(--green);
     font-size: 1.25rem;
 }
+
+.productPriceSmallest {
+    color: var(--green);
+    font-size: 1rem;
+}
+
 
 .flexBetween {
     display: flex;
     justify-content: space-between;
-    gap: 3rem;
+}
+
+.removeObject {
+    cursor: pointer;
+}
+
+.removeObject:hover {
+    color: var(--red)
 }
 
 
-.pepe {
+.wrapper {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
+    height: 100vh;
 
 }
 
-.pepe2 {
+.content {
     flex-grow: 1;
 }
 
 /****************** BOOTSTRAP OVERRIDE *******************/
 
 .btn-danger {
-    background-color: rgb(255, 0, 0); 
+    background-color: var(--red); 
 }
 
 .form-control {
@@ -121,6 +134,7 @@ section {
 .form-control:focus {
     background-color: rgba(40, 40, 40, 1);
     box-shadow: none;
+    color: white;
     border: 1px solid white;
 
 }
