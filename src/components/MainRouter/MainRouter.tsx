@@ -13,10 +13,12 @@ import CheckoutPage from "@/pages/checkout/CheckoutPage"
 
 export default function MainRouter() {
     const [results, setResults] = useState<Product[]>([])
+    
 
     return (<BrowserRouter>
         <div className="wrapper">
             {/* <Test /> */}
+            
             <RetroNav setResults={setResults} />
             <Container as="main" className="content">
                 <Routes>

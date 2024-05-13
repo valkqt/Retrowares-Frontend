@@ -4,4 +4,8 @@
     --red: crimson ;
     --green: greenyellow;
     --yellow: #FFFF55;
+    --bg-darkest: rgb(20,20,20);
+    --bg-darker: rgb(70,70,70);
+    --bg-dark: rgba(170,170,170,0.7);
+    --white: white;
 }

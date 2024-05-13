@@ -1,0 +1,6 @@
+.OrderCode {
+    display: inline-block;
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+    background-color: rgba(20,20,20,1);
+}

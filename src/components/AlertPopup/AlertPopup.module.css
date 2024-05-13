@@ -1,0 +1,14 @@
+.CustomPopup {
+    position: absolute;
+    top: 1rem;
+    width: 320px;
+    left: calc(50% - 160px);
+
+}
+
+.CustomPopup div {
+    background-color: var(--bg-darker);
+    color: var(--white);
+    border-radius: 0.175rem;
+}
+

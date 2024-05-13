@@ -3,11 +3,16 @@ import css from "./CartPopup.module.css"
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { CartItem } from "@/types";
+import { useState } from "react";
+import AlertPopup from "@/components/AlertPopup/AlertPopup";
+
 import "@/App.css"
 import QuantityHandler from "@/pages/checkout/QuantityHandler/QuantityHandler";
 import RemoveHandler from "@/pages/checkout/RemoveHandler/RemoveHandler";
 
 export default function CartPopup({ items }: { items: CartItem[] }) {
+    const [popup, setPopup] = useState(false);
+
 
     return <div className={classNames(css.cartPopup)}>
         <div className={css.cartHeader}>
@@ -17,7 +22,7 @@ export default function CartPopup({ items }: { items: CartItem[] }) {
         <div className={css.cartItemContainer}>
             {items.length > 0 ? items.map(i => {
                 return (
-                    <div className="d-flex gap-3">
+                    <div className="d-flex gap-3" key={i.productId}>
                         <div className={css.cartImage} style={{ backgroundImage: `url(${i.image})` }}>
 
                         </div>
@@ -27,11 +32,12 @@ export default function CartPopup({ items }: { items: CartItem[] }) {
                                     {i.title}
                                 </Link>
                                 </div>
-                                <RemoveHandler productId={i.productId} key={i.productId} />
+                                <RemoveHandler productId={i.productId} show={() => setPopup(true)} />
+
                             </div>
                             <div className="flexBetween gap-3">
                                 <div className="productPriceSmallest">{(i.price * i.quantity).toFixed(2)}$</div>
-                                <QuantityHandler item={i} key={i.productId} />
+                                <QuantityHandler item={i} />
 
 
                             </div>

@@ -125,6 +125,10 @@ section {
     background-color: var(--red); 
 }
 
+.btn-close {    
+    filter:invert()
+}
+
 .form-control {
     background-color: rgba(40, 40, 40, 1);
     color: white;

@@ -8,6 +8,7 @@ import { useCart } from "@/contexts/index";
 import { Button } from "react-bootstrap";
 import QuantityHandler from "./QuantityHandler/QuantityHandler";
 import RemoveHandler from "./RemoveHandler/RemoveHandler";
+import Success from "./Success/Success";
 
 
 export default function CheckoutPage() {
@@ -33,19 +34,18 @@ export default function CheckoutPage() {
         }
 
         if (params === "canceled") {
-            setMessage(
-                "Order canceled -- continue to shop around and checkout when you're ready."
-            );
+            window.location.href = "/"
         }
     }, []);
 
     return message ? (
-        <p>{message}</p>
+        <Success />
 
     ) : (
         <div className={css.CheckoutWrapper}>
             <div className={classNames(css.OrderContainer, "CustomCard")}>
                 <h2 className="darkHeader">Cart</h2>
+                {cart.length === 0 && <p>Cart is empty!</p>}
                 {cart.map(i => {
                     return (
                         <div key={i.productId} className={classNames(css.ProductContainer)}>
@@ -73,29 +73,31 @@ export default function CheckoutPage() {
                 }
                 )}
             </ div>
-            <div className="CustomCard">
-                <h2 className="darkHeader">Order Summary</h2>
-                <div>
-                    {cart.map(i => {
-                        return (
-                            <div className="flexBetween gap-5">
-                                <p>{i.title}</p>
-                                <div>x{i.quantity}</div>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className="flexBetween gap-5">
-                    <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        checkoutAction(cart).then(data => window.location.href = `${data}`);
-                    }}>
-                        <Button type="submit" className="btn-danger">
-                            Proceed
-                        </Button>
-                    </form>
+            <div className="flex-grow-1">
+                <div className="CustomCard">
+                    <h2 className="darkHeader">Order Summary</h2>
+                    <div>
+                        {cart.map(i => {
+                            return (
+                                <div className="flexBetween gap-5">
+                                    <p>{i.title}</p>
+                                    <div>x{i.quantity}</div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="flexBetween gap-5">
+                        <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            checkoutAction(cart).then(data => window.location.href = `${data}`);
+                        }}>
+                            <Button type="submit" className="btn-danger">
+                                Proceed
+                            </Button>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>

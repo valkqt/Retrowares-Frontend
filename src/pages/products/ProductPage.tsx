@@ -9,6 +9,7 @@ import { Button } from "react-bootstrap";
 import { Cart4 } from "react-bootstrap-icons";
 import { useCart } from "@/contexts/CartContext";
 import ScreenshotModal from "./ScreenshotModal/ScreenshotModal";
+import { usePopup } from "@/contexts";
 
 
 function ProductPage() {
@@ -19,6 +20,7 @@ function ProductPage() {
     const [screenshotShow, setScreenshotShow] = useState(false);
     const [highlight, setHighlight] = useState("")
     const [, addToCart] = useCart();
+    const [_, setPopup, __, setMessage] = usePopup();
 
     useEffect(() => {
         if (params.id) {
@@ -26,7 +28,6 @@ function ProductPage() {
             getProductById(productId)
                 .then(data => {
                     setProduct(data);
-                    console.log(data)
                     getRelatedProducts("", data.genre, "")
                         .then(rel => setRelated(rel))
                 })
@@ -61,7 +62,11 @@ function ProductPage() {
                         </div>
 
 
-                        <Button className="btn-danger" onClick={() => addToCart(product)}>
+                        <Button className="btn-danger" onClick={() => {
+                            addToCart(product)
+                            setPopup(true);
+                            setMessage("Product added to cart")
+                            }}>
                             <Cart4 size={16} />
                         </Button>
                     </div>
