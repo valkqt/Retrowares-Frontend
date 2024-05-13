@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 function Test() {
 
     useEffect(() => {
-        // fetch("https://localhost:7131/api/Products/pepe").then(res => res.json()).then(data => console.log(data))
+        // fetch("https://localhost:7131/api/Highlights/latest").then(res => res.json()).then(data => console.log(data))
     }, [])
 
     return <div>

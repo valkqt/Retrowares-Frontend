@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import SingleProduct from "../SingleProduct/SingleProduct.tsx";
 import { Product } from "@/types";
+import Showcase from "./Showcase/Showcase.tsx";
+import Highlight from "./Highlight/Highlight.tsx";
 
 // import Test from "../../../components/_temp/Test.tsx";
 
@@ -16,11 +17,14 @@ function HomePage() {
     return (
         <>
             {/* <Test /> */}
-            <h1 className="text-center">PC-98 Collection</h1>
-            <div className="CardWrapper">
-                {products.map(elem => {
-                    return <SingleProduct key={elem.id} product={elem}></SingleProduct>
-                })}
+            <Highlight />
+            <div>
+                <h2 className="text-center">PC-98 Collection</h2>
+                <div className="CardWrapper">
+                    {products.slice(0,4).map(elem => {
+                        return <Showcase key={elem.id} item={elem} />
+                    })}
+                </div>
             </div>
         </>
     )

@@ -27,3 +27,15 @@
     height: 20px;
     width: 20px;
 }
+
+.SearchbarMenu {
+    position: absolute;
+    width: 100%;
+    z-index: 20;
+    background-color: var(--bg-darkest);
+    overflow: auto;
+    max-height: 300px;
+    padding: 1rem;
+    border-bottom-left-radius: 0.325rem;
+    border-bottom-right-radius: 0.325rem;
+}

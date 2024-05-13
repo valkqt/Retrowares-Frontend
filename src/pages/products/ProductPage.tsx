@@ -20,7 +20,7 @@ function ProductPage() {
     const [screenshotShow, setScreenshotShow] = useState(false);
     const [highlight, setHighlight] = useState("")
     const [, addToCart] = useCart();
-    const [_, setPopup, __, setMessage] = usePopup();
+    const [, setPopup, , setMessage] = usePopup();
 
     useEffect(() => {
         if (params.id) {

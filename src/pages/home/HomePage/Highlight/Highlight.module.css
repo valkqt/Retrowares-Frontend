@@ -1,0 +1,25 @@
+.FeatureRelation {
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: calc(-300px - 1rem);
+    z-index: 10;
+    background-color: var(--bg-darkest);
+    animation: op-transition 0.15s linear;
+    color: white;
+    padding: 1rem;
+    
+}
+
+.Subtitle {
+    font-size: 1rem;
+    color: var(--bg-dark);
+}
+
+@keyframes op-transition {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
