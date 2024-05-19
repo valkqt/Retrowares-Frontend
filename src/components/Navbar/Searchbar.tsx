@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Form, FormControl, Button, Spinner } from "react-bootstrap"
 import { Search } from "react-bootstrap-icons"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import css from "./RetroNav.module.css"
 import { getSearchResults } from "../../api/index"
 import { Product } from "@/types"
@@ -34,7 +34,10 @@ function SearchbarMenu({ loading, results, show }: SearchbarMenuProps) {
                     }
                     {results.length > 0 && <div>
                         {results.map(r => <div key={r.id}>
-                            {r.title}
+                            <Link to={`/Products/${r.id}`} className="neuteredLink">
+                                {r.title}
+
+                            </Link>
                         </div>)}
                     </div>}
                 </div>
@@ -50,9 +53,13 @@ export default function Searchbar({ setResults }: SearchbarProps) {
     const [searchResults, setSearchResults] = useState<Product[]>([])
     const [menuShow, setMenuShow] = useState(false)
 
+    console.log("searchbar render")
+
     function handleClickOutside() {
         setMenuShow(false);
     }
+
+
 
 
     const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
@@ -64,7 +71,7 @@ export default function Searchbar({ setResults }: SearchbarProps) {
                 onSubmit={(e) => {
                     e.preventDefault();
                     getSearchResults(query).then((data) => setResults(data));
-                    navigate("/search");
+                    navigate(`/search/results`);
                 }}>
 
                 <FormControl

@@ -1,0 +1,24 @@
+.CustomSelect {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border: 1px solid rgba(155, 155, 155, 0.705);
+
+}
+
+.FormWrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+}
+
+.SelectMenus {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}

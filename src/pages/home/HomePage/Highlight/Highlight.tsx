@@ -3,6 +3,7 @@ import { Product } from "@/types.ts"
 import { Link } from "react-router-dom"
 import css from "./Highlight.module.css"
 import classNames from "classnames"
+import { Spinner } from "react-bootstrap"
 
 interface Highlight {
     title: string,
@@ -34,18 +35,23 @@ function Relation({ relation }: { relation: Product }) {
 
 export default function Highlight() {
     const [feature, setFeature] = useState<Highlight>()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch("https://localhost:7131/api/Highlights/latest")
             .then(res => res.json())
             .then(data => {
                 setFeature(data)
+                setLoading(false)
             })
     }, [])
 
 
 
     return <div className="my-5">
+        {loading && <div className="text-center">
+            <Spinner variant="dark"/>
+            </div>}
         {feature && <div>
             <div>
                 <div className="text-center mb-3">

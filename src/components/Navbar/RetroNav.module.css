@@ -39,3 +39,15 @@
     border-bottom-left-radius: 0.325rem;
     border-bottom-right-radius: 0.325rem;
 }
+
+.NavDropdown div {
+    background-color: var(--bg-darkest);
+}
+
+.NavDropdown div a:hover {
+    color: black !important;
+}
+
+.NavDropdown div a:first-of-type:hover {
+    color: black !important;
+}

@@ -1,5 +1,5 @@
 import { getProductById, getRelatedProducts } from "@/api";
-import { Product } from "@/types.ts";
+import { Product, Screenshot } from "@/types.ts";
 import css from "./ProductPage.module.css"
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
@@ -18,7 +18,7 @@ function ProductPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [related, setRelated] = useState<Product[]>([])
     const [screenshotShow, setScreenshotShow] = useState(false);
-    const [highlight, setHighlight] = useState("")
+    const [highlight, setHighlight] = useState<Screenshot>()
     const [, addToCart] = useCart();
     const [, setPopup, , setMessage] = usePopup();
 
@@ -66,7 +66,7 @@ function ProductPage() {
                             addToCart(product)
                             setPopup(true);
                             setMessage("Product added to cart")
-                            }}>
+                        }}>
                             <Cart4 size={16} />
                         </Button>
                     </div>
@@ -81,7 +81,8 @@ function ProductPage() {
                     <dd>{product.platform}</dd>
                     <dt>Website:</dt>
                     <dd>{product.officialUrl ?? "Not available"}</dd>
-
+                    <dt>Release Date:</dt>
+                    <dd>{product.releaseDate ?? "Unknown"}</dd>
                 </dl>
 
             </div>
@@ -92,7 +93,7 @@ function ProductPage() {
                 {product.screenshots.slice(0, 3).map(s => {
                     return (
                         <div key={s.id}>
-                            <div onClick={() => {setScreenshotShow(true); setHighlight(s.url)}}>
+                            <div onClick={() => { setScreenshotShow(true); setHighlight(s) }}>
                                 <img src={s.thumbnail} className={css.productScreenshot} />
 
                             </div>
@@ -100,30 +101,32 @@ function ProductPage() {
                     )
                 })}
             </div>
-            <ScreenshotModal
+            {highlight && <ScreenshotModal
 
                 show={screenshotShow}
                 onHide={() => setScreenshotShow(false)}
-                image={highlight}
+                item={highlight}
             />
+            }
 
 
         </section>
         <aside>
             <h2 className="text-center darkHeader">Related Products</h2>
             <div className={css.relatedSlider}>
-                {related.map(r => {
-                    return (
-                        <div key={r.id}>
-                            <Link to={`/Products/${r.id}`} className="neuteredLink">
-                                <div>
-                                    <img src={r.image} className={css.relatedImage} />
-                                </div>
-                                <div>{r.title}</div>
-                            </Link>
-                        </div>
-                    )
-                })}
+                {
+                    related.filter(r => r.id !== product.id).map(r => {
+                        return (
+                            <div key={r.id}>
+                                <Link to={`/Products/${r.id}`} className="neuteredLink">
+                                    <div>
+                                        <img src={r.image} className={css.relatedImage} />
+                                    </div>
+                                    <div>{r.title}</div>
+                                </Link>
+                            </div>
+                        )
+                    })}
             </div>
         </aside>
 

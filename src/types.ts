@@ -4,6 +4,7 @@ export interface Product {
     description?: string,
     genre: string,
     platform: string,
+    releaseDate: string,
     image: string,
     screenshots: Screenshot[],
     officialUrl?: string,
@@ -24,4 +25,5 @@ export interface Screenshot {
     id: number,
     url: string,
     thumbnail: string,
+    caption: string,
 }

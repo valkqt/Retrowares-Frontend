@@ -14,7 +14,8 @@ export function CartProvider({ children }: PropsWithChildren) {
     function addToCart(product: Product): void {
         const existingItemIndex = cart.findIndex(i => i.productId === product.id)
 
-        if (existingItemIndex >= 0) {
+
+        if (existingItemIndex >= 0 && product.stock > cart[existingItemIndex].quantity) {
             cart[existingItemIndex].quantity++;
             const newCart = [...cart];
             setCart(newCart);

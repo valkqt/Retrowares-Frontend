@@ -146,3 +146,13 @@ section {
 .form-control::placeholder {
     color: white;
 }
+
+.pagination a {
+    background-color: var(--bg-darkest) ;
+    color: white;
+}
+
+.page-item.active span {
+    background-color: var(--bg-darker) ;
+    border-color: white;
+}

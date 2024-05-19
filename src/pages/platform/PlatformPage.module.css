@@ -1,0 +1,13 @@
+.Slider {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    overflow: auto;
+    max-width: 100%;
+    
+}
+
+.Table {
+    height: 800px;
+    margin-bottom: 3rem;
+}

@@ -4,14 +4,13 @@ import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { CartItem } from "@/types";
 import { useState } from "react";
-import AlertPopup from "@/components/AlertPopup/AlertPopup";
 
 import "@/App.css"
 import QuantityHandler from "@/pages/checkout/QuantityHandler/QuantityHandler";
 import RemoveHandler from "@/pages/checkout/RemoveHandler/RemoveHandler";
 
 export default function CartPopup({ items }: { items: CartItem[] }) {
-    const [popup, setPopup] = useState(false);
+    const [, setPopup] = useState(false);
 
 
     return <div className={classNames(css.cartPopup)}>

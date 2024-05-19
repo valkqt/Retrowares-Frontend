@@ -3,6 +3,7 @@ import { useState } from "react";
 import css from "./Showcase.module.css";
 import classNames from "classnames";
 import { Interweave } from "interweave";
+import { Link } from "react-router-dom";
 
 export default function Showcase({ item }: { item: Product }) {
     // const [product, setProduct] = useState<Product>()
@@ -18,11 +19,16 @@ export default function Showcase({ item }: { item: Product }) {
 
     return <>
         {
-            item && <div>
+            item && <div><Link to={`/products/${item.id}`} className="text-white">
                 <div className={css.ShowcaseWrapper} >
                     <div className={"position-relative"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                         <div className={css.ShowcaseImageWrapper}>
                             {/* <Link to={`/Products/${item.id}`} className={css.ShowcaseLink}> */}
+                            {
+                                item.discountPercentage > 0 &&
+                                <div className={css.Discount}>-{item.discountPercentage}%</div>
+                            }
+
                             <img src={item.image} className={css.ShowcaseImage} />
                             <div className={classNames(css.ShowcaseHover, hover ? "" : "toggleDisplay")}>
                                 <h4>{item.title}</h4>
@@ -52,7 +58,7 @@ export default function Showcase({ item }: { item: Product }) {
 
                 </div>
 
-
+            </Link>
             </div>
         }
     </>

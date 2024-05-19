@@ -1,4 +1,3 @@
-import css from "./Success.module.css"
 
 export default function Success() {
     return (
@@ -8,9 +7,7 @@ export default function Success() {
                 <img src="src\assets\images\thanks.png" />
             </div>
             <p>Your order is scheduled for delivery in 3-5 business days.
-                Order status can be viewed any time by using the order code through our customer services.</p>
-            <h4 className="display-6">Your order code</h4>
-            <div className={css.OrderCode}>s2Pq!M54v</div>
+                Order status can be viewed any time by using the order code through our tracking services.</p>
         </div>
     )
 }

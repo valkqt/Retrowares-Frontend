@@ -1,0 +1,12 @@
+.Modal figure {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-darkest);
+    margin: 0;
+}
+
+.Modal figcaption {
+    padding: 1rem;
+    text-align: center;
+}
+

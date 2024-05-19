@@ -2,6 +2,7 @@ import { Cart4 } from 'react-bootstrap-icons';
 import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import css from "./RetroNav.module.css"
 import Searchbar from './Searchbar';
@@ -40,7 +41,29 @@ function RetroNav({ setResults, }: NavbarProps) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={"me-auto " + css.justifyBetween}>
                         <div className='d-flex'>
-                            {/* <Link to="/" className='nav-link'>Home</Link> */}
+                            <Link to="/About" className='nav-link'>About us</Link>
+                            <Link to="/Offers" className='nav-link'>Features</Link>
+                            <Link to="/Tracking" className='nav-link'>Tracking</Link>
+                            <NavDropdown title="Browse" id="basic-nav-dropdown" className={classNames(css.NavDropdown)}>
+
+                                <Link to="/Search" className='dropdown-item'>
+                                    Advanced Search
+                                </Link>
+
+                                <NavDropdown.Divider />
+                                <Link to="/Platforms/PC-98" className='dropdown-item'>
+                                    NEC PC-98
+                                </Link>
+                                <Link to="/Platforms/MS-DOS" className='dropdown-item'>
+                                    MS-DOS
+                                </Link>
+                                <Link to="/Platforms/Apple" className='dropdown-item'>
+                                    Apple II
+                                </Link>
+
+
+                            </NavDropdown>
+
                         </div>
                         <div className='d-flex gap-3'>
                             <Searchbar setResults={setResults} />

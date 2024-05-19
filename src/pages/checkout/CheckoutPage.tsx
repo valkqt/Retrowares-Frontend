@@ -5,35 +5,54 @@ import classNames from "classnames";
 import "@/contexts/index"
 import { CartItem } from "@/types";
 import { useCart } from "@/contexts/index";
-import { Button } from "react-bootstrap";
+import { Button, FormControl, FormLabel } from "react-bootstrap";
 import QuantityHandler from "./QuantityHandler/QuantityHandler";
 import RemoveHandler from "./RemoveHandler/RemoveHandler";
 import Success from "./Success/Success";
 
+interface CheckoutPayload {
+    cart: CartItem[],
+    email: string,
+
+}
 
 export default function CheckoutPage() {
     const [message, setMessage] = useState("");
     const [searchParams] = useSearchParams();
     const [cart] = useCart();
+    const [email, setEmail] = useState<string>("")
+    const [, setPopup] = useState(false);
 
-    async function checkoutAction(payload: CartItem[]): Promise<string> {
 
-        const res = await fetch("https://localhost:7131/create-checkout-session", {
+    async function checkoutAction(payload: CheckoutPayload): Promise<string> {
+
+        if (payload.cart.length < 1) {
+            return "";
+        }
+
+        console.log(payload)
+
+        const res = await fetch("http://andreabuzzanca-001-site3.jtempurl.com/create-checkout-session", {
             headers: { "Content-Type": "application/json" },
             method: "POST", body: JSON.stringify(payload)
         })
-        return await res.text()
+
+        if (res.ok) {
+            return await res.text()
+        }
+
+        return "";
     }
 
 
     useEffect(() => {
-        const params: string | null = searchParams.get("result");
+        const result: string | null = searchParams.get("result");
 
-        if (params === "success") {
+        if (result === "success") {
             setMessage("Order placed! You will receive an email confirmation.");
         }
 
-        if (params === "canceled") {
+        if (result === "canceled") {
             window.location.href = "/"
         }
     }, []);
@@ -61,7 +80,7 @@ export default function CheckoutPage() {
                                             {i.title}
                                         </Link>
                                     </h4>
-                                    <RemoveHandler productId={i.productId} />
+                                    <RemoveHandler productId={i.productId} show={() => setPopup(true)} />
                                 </div>
                                 <div className="flexBetween gap-5">
                                     <div className="productPriceSmall">{i.price.toFixed(2)}$</div>
@@ -79,25 +98,39 @@ export default function CheckoutPage() {
                     <div>
                         {cart.map(i => {
                             return (
-                                <div className="flexBetween gap-5">
+                                <div className="flexBetween gap-5" key={i.productId}>
                                     <p>{i.title}</p>
                                     <div>x{i.quantity}</div>
                                 </div>
                             )
                         })}
                     </div>
-                    <div className="flexBetween gap-5">
-                        <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            checkoutAction(cart).then(data => window.location.href = `${data}`);
-                        }}>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        checkoutAction({ cart, email }).then(data => {
+                            if (data === "") {
+                                console.log("error doing checkout stuff")
+                            } else {
+                                window.location.href = `${data}`
+
+                            }
+                        });
+                    }}>
+                        <hr />
+                        <FormLabel>Your Email:</FormLabel>
+                        <FormControl type="email" onChange={(e) => setEmail(e.target.value)} className="d-block" required/>
+                        <div className="flexBetween mt-3">
+                            <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
+
                             <Button type="submit" className="btn-danger">
                                 Proceed
                             </Button>
-                        </form>
 
-                    </div>
+                        </div>
+
+
+                    </form>
+
                 </div>
             </div>
         </div>

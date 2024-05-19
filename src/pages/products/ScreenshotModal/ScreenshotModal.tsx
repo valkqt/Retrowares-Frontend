@@ -1,20 +1,31 @@
+import { Screenshot } from '@/types';
 import Modal from 'react-bootstrap/Modal';
+import css from "./ScreenshotModal.module.css"
 
 interface ScreenshotModalProps {
     show: boolean,
     onHide: CallableFunction,
-    image: string,
+    item: Screenshot,
 }
 
-export default function ScreenshotModal({ show, onHide, image }: ScreenshotModalProps) {
+export default function ScreenshotModal({ show, onHide, item }: ScreenshotModalProps) {
     return (
         <Modal show={show}
             onHide={() => onHide()}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            className={css.Modal}
         >
-            <img src={image} />
+            <figure>
+                <img src={item.thumbnail} />
+                <figcaption>{item.caption}</figcaption>
+
+            </figure>
+
+            {/* <figure className={css.Pepe}>
+                <figcaption>{item.caption}</figcaption>
+            </figure> */}
         </Modal>
     );
 }
