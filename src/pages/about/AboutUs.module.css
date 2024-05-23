@@ -1,0 +1,5 @@
+.AboutImage {
+    max-width: 640px;
+    height: auto;
+    object-fit: cover;
+}

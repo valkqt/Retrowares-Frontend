@@ -3,18 +3,14 @@ import { Link, useSearchParams } from "react-router-dom";
 import css from "./CheckoutPage.module.css"
 import classNames from "classnames";
 import "@/contexts/index"
-import { CartItem } from "@/types";
+import { CheckoutPayload } from "@/types";
 import { useCart } from "@/contexts/index";
 import { Button, FormControl, FormLabel } from "react-bootstrap";
 import QuantityHandler from "./QuantityHandler/QuantityHandler";
 import RemoveHandler from "./RemoveHandler/RemoveHandler";
 import Success from "./Success/Success";
+import { checkoutSessionInit } from "@/api";
 
-interface CheckoutPayload {
-    cart: CartItem[],
-    email: string,
-
-}
 
 export default function CheckoutPage() {
     const [message, setMessage] = useState("");
@@ -26,22 +22,8 @@ export default function CheckoutPage() {
 
     async function checkoutAction(payload: CheckoutPayload): Promise<string> {
 
-        if (payload.cart.length < 1) {
-            return "";
-        }
+        return checkoutSessionInit(payload).then()
 
-        console.log(payload)
-
-        const res = await fetch("http://andreabuzzanca-001-site3.jtempurl.com/create-checkout-session", {
-            headers: { "Content-Type": "application/json" },
-            method: "POST", body: JSON.stringify(payload)
-        })
-
-        if (res.ok) {
-            return await res.text()
-        }
-
-        return "";
     }
 
 

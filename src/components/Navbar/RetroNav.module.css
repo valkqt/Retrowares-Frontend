@@ -51,3 +51,8 @@
 .NavDropdown div a:first-of-type:hover {
     color: black !important;
 }
+
+.Zindex {
+    z-index: 100;
+    background-color: black;
+}

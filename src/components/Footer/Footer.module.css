@@ -1,10 +1,26 @@
-.Footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.FooterWrapper {
     bottom: 0;
     width: 100%;
     height: 80px;
     background-color: black;
+    padding: 1rem;
+
     border-top: 1px solid rgba(155, 155, 155, 0.705)
+}
+
+.FooterContents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.Address {
+    margin: 0;
+}
+
+.Socials {
+    display: flex;
+    gap: 1rem;
 }

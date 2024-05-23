@@ -10,3 +10,16 @@
     text-align: center;
 }
 
+.Modal {
+    animation: opacity-transition 0.15s linear
+}
+
+@keyframes opacity-transition {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

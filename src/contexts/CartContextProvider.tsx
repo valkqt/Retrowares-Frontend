@@ -9,7 +9,7 @@ export function CartProvider({ children }: PropsWithChildren) {
         const storage = localStorage.getItem("cart")
         const readCart = storage !== null ? JSON.parse(storage) : []
         setCart(readCart);
-    }, [])
+    }, [cart.length])
 
     function addToCart(product: Product): void {
         const existingItemIndex = cart.findIndex(i => i.productId === product.id)

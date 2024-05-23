@@ -6,16 +6,7 @@ import { Interweave } from "interweave";
 import { Link } from "react-router-dom";
 
 export default function Showcase({ item }: { item: Product }) {
-    // const [product, setProduct] = useState<Product>()
     const [hover, setHover] = useState(false)
-
-
-    // useEffect(() => {
-    //     fetch("https://localhost:7131/api/Products/225", { headers: { "Content-Type": "application/json" }, method: "GET" })
-    //         .then(res => res.json()).then(data => { setProduct(data) })
-
-    // }, [])
-
 
     return <>
         {

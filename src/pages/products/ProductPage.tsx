@@ -78,9 +78,9 @@ function ProductPage() {
                     <dt>Genre:</dt>
                     <dd>{product.genre}</dd>
                     <dt>Platform:</dt>
-                    <dd>{product.platform}</dd>
-                    <dt>Website:</dt>
-                    <dd>{product.officialUrl ?? "Not available"}</dd>
+                    <dd><Link to={`/Platforms/${product.platform}`} className="neuteredLink">{product.platform}</Link></dd>
+                    {/* <dt>Website:</dt>
+                    <dd>{product.officialUrl ?? "Not available"}</dd> */}
                     <dt>Release Date:</dt>
                     <dd>{product.releaseDate ?? "Unknown"}</dd>
                 </dl>

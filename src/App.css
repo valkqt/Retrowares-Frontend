@@ -65,6 +65,10 @@ section {
 
 /* ***************CUSTOM COMPONENTS************** */
 
+.fitImage {
+    object-fit: cover;
+}
+
 .CustomCard {
     background-color: rgb(20, 20, 20);
     border: 1px solid rgba(155, 155, 155, 0.7);
@@ -117,6 +121,27 @@ section {
 
 .content {
     flex-grow: 1;
+}
+
+.searchFormButton {
+    border-radius: 0;
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    background-color: var(--bg-dark);
+    border-color: var(--bg-dark);
+    outline: 0;
+    box-shadow: none;
+}
+
+.searchFormButton:hover {
+    background-color: var(--bg-darker);
+    border-color: var(--bg-dark);
+}
+
+.customSearchForm {
+    border-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
 }
 
 /****************** BOOTSTRAP OVERRIDE *******************/

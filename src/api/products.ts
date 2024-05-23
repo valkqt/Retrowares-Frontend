@@ -1,37 +1,29 @@
 import { Product } from "@/types"
+import { instance } from "./index"
+
+export async function getAllProducts(): Promise<Product[]> {
+    return instance.get("api/products").then(data => data.data)
+
+}
 
 export async function getSearchResults(query: string): Promise<Product[]> {
-    const res = await fetch(`https://localhost:7131/api/Products/Search?title=${query}`, 
-    { 
-        headers: { "Content-Type": "application/json" }, 
-        method: "GET"
-    })
 
-    return await res.json()
+    return instance.get(`api/Products/Search?title=${query}`).then(data => data.data)
 }
 
 export async function getProductById(id : number): Promise<Product> {
-    const res = await fetch(`http://andreabuzzanca-001-site3.jtempurl.com//api/Products/${id}`, { headers: { "Content-Type": "application/json" }, method: "GET" })
     
-    return await res.json()
+    return instance.get(`api/Products/${id}`).then(data => data.data)
 
 }
 
 export async function getSpecialOffers(): Promise<Product[]> {
-    const res = await fetch(`https://localhost:7131/api/Products/offers`, { headers: { "Content-Type": "application/json" }, method: "GET" })
 
-    return await res.json()
-
+    return instance.get(`api/Products/offers`).then(data => data.data)
 }
 
 export async function getRelatedProducts(title: string, genre: string, platform: string): Promise<Product[]>{
 
-    const res = await fetch(`https://localhost:7131/api/Products/Search?title=${title}&genre=${genre}&platform=${platform}`, 
-    { 
-        headers: { "Content-Type": "application/json" }, 
-        method: "GET"
-    })
-
-    return await res.json()
+    return instance.get(`api/Products/Search?title=${title}&genre=${genre}&platform=${platform}`).then(data =>  data.data)
 }
 

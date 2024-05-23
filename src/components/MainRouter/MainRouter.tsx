@@ -7,11 +7,11 @@ import ProductPage from "@/pages/products/ProductPage"
 import { Container } from "react-bootstrap"
 import { useState } from "react"
 import { Product } from "@/types"
-import Test from "../_temp/Test"
 import CheckoutPage from "@/pages/checkout/CheckoutPage"
 import SpecialOffers from "@/pages/special_offers/SpecialOffers"
 import PlatformPage from "@/pages/platform/PlatformPage"
 import TrackingPage from "@/pages/tracking/TrackingPage"
+import AboutUs from "@/pages/about/AboutUs"
 
 
 export default function MainRouter() {
@@ -20,7 +20,6 @@ export default function MainRouter() {
 
     return (<BrowserRouter>
         <div className="wrapper">
-            {/* <Test /> */}
             
             <RetroNav setResults={setResults} />
             <Container as="main" className="content">
@@ -29,7 +28,7 @@ export default function MainRouter() {
                     <Route path="/search/:query?" element={<SearchPage products={results} setProducts={setResults}/>} />
                     <Route path="/products/:id" element={<ProductPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route path="/test" element={<Test />} />
+                    <Route path="/about" element={<AboutUs />} />
                     <Route path="/offers" element={<SpecialOffers />} />
                     <Route path="/platforms/:name" element={<PlatformPage />} />
                     <Route path="/tracking" element={<TrackingPage />}/>
