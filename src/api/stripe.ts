@@ -7,6 +7,6 @@ export async function checkoutSessionInit(payload: CheckoutPayload): Promise<str
         return "";
     }
 
-    return instance.post("/create-checkout-session", JSON.stringify(payload)).then(data => data.status < 300 ? data.data : "")
+    return instance.post("api/create-checkout-session", JSON.stringify(payload)).then(data => data.status < 300 ? data.data : "")
 
 }

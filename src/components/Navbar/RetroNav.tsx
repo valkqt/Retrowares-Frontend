@@ -33,10 +33,39 @@ function RetroNav({ setResults }: NavbarProps) {
         <Link to="/" className="navbar-brand">
           Retrowares
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <div className="d-flex gap-3 order-lg-2">
+          <div className={classNames(css.SearchBarCart)}>
+            <Searchbar setResults={setResults} />
+            <div
+              ref={ref}
+              className={classNames(css.centeredIcon, css.popupContainer)}
+            >
+              <div onClick={() => setPopupShow(true)} className="">
+                <Cart4 size={20} className={classNames(css.popupContainer)} />
+                <div
+                  className={css.itemCounter}
+                  style={
+                    cart.length > 0 ? { display: "flex" } : { display: "none" }
+                  }
+                >
+                  <div className="GenericFont">{cart.length}</div>
+                </div>
+              </div>
+
+              {popupShow && (
+                <>
+                  <CartPopup items={cart} />
+                </>
+              )}
+            </div>
+          </div>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        </div>
+
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className={classNames("me-auto", css.justifyBetween, )}>
-            <div className="d-md-flex">
+          <Nav className={classNames("me-auto", css.justifyBetween)}>
+            <div className="d-lg-flex">
               <Link to="/About" className="nav-link">
                 About us
               </Link>
@@ -71,36 +100,7 @@ function RetroNav({ setResults }: NavbarProps) {
                 <Link to="/Platforms/Commodore%2064" className="dropdown-item">
                   Commodore 64
                 </Link>
-
-
               </NavDropdown>
-            </div>
-            <div className="d-flex gap-3">
-              <Searchbar setResults={setResults} />
-              <div
-                ref={ref}
-                className={classNames(css.centeredIcon, css.popupContainer)}
-              >
-                <div onClick={() => setPopupShow(true)}>
-                  <Cart4 size={20} className={css.popupContainer} />
-                  <div
-                    className={css.itemCounter}
-                    style={
-                      cart.length > 0
-                        ? { display: "flex" }
-                        : { display: "none" }
-                    }
-                  >
-                    <div className="GenericFont">{cart.length}</div>
-                  </div>
-                </div>
-
-                {popupShow && (
-                  <>
-                    <CartPopup items={cart} />
-                  </>
-                )}
-              </div>
             </div>
           </Nav>
         </Navbar.Collapse>

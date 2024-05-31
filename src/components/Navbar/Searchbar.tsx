@@ -63,7 +63,7 @@ export default function Searchbar({ setResults }: SearchbarProps) {
   const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
 
   return (
-    <div className="position-relative" ref={ref}>
+    <div className="position-relative d-none d-md-block" ref={ref}>
       <Form
         className="d-flex"
         onSubmit={(e) => {

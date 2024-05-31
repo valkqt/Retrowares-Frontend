@@ -58,7 +58,7 @@ export default function Featured() {
             </div>
             <p>{feature.text}</p>
           </div>
-          <div className="d-flex gap-5">
+          <div className={css.RelationContainer}>
             {feature.relations.map((r) => {
               return (
                 <div key={r.id}>

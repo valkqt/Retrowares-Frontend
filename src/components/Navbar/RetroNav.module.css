@@ -7,11 +7,18 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    text-align: right;
 }
 
 .popupContainer {
     position: relative;
 }
+
+.SearchBarCart {
+    display: flex;
+    gap: 1rem;
+}
+
 
 .itemCounter {
     position: absolute;

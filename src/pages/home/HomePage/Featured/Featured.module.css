@@ -11,6 +11,18 @@
     
 }
 
+.RelationContainer {
+    display: flex;
+    gap: 3rem;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.RelationContainer div {
+    width: 100px;
+    height: 150px
+}
+
 .Subtitle {
     font-size: 1rem;
     color: var(--bg-dark);
