@@ -30,6 +30,7 @@ export default function PlatformPage() {
     getRelatedProducts("", "", params.name).then((data) => {
       setResults(data);
       setLoading(false);
+      setPageOffset(0)
       console.log(data);
     });
   }, [params.name]);
