@@ -99,9 +99,13 @@ export default function PlatformPage() {
                 <tr>
                   <td className="h4">Title</td>
                   <td className="h4">Price</td>
-                  <td className="h4">Genre</td>
+                  <td className={classNames("h4", css.DesktopTableCell)}>
+                    Genre
+                  </td>
 
-                  <td className="h4">Release Date</td>
+                  <td className={classNames("h4", css.DesktopTableCell)}>
+                    Release Date
+                  </td>
                   <td className="h4">Stock</td>
                 </tr>
               </thead>
@@ -118,9 +122,11 @@ export default function PlatformPage() {
                       >
                         <td>{r.title}</td>
                         <td className="productPriceSmallest">{r.price}$</td>
-                        <td>{r.genre}</td>
+                        <td className={css.DesktopTableCell}>{r.genre}</td>
 
-                        <td>{r.releaseDate.slice(0, 4)}</td>
+                        <td className={css.DesktopTableCell}>
+                          {r.releaseDate.slice(0, 4)}
+                        </td>
                         <td>{r.stock}</td>
                       </tr>
                     );
@@ -128,6 +134,11 @@ export default function PlatformPage() {
               </tbody>
             </table>
           </div>
+          <ResultsPagination
+            pageCount={Math.ceil(results.length / 30)}
+            onPaginationChange={setPageOffset}
+            active={1 + pageOffset / 30}
+          />
         </>
       ) : (
         <div className="text-center">There are no games for this platform</div>

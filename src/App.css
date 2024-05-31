@@ -19,6 +19,10 @@ p, div {
     font-family: "NECAPC3" ;
 }
 
+td {
+    padding: 0.66rem 1rem;
+}
+
 .GenericFont {
     font-family: "ApricotXenC" !important;
 }

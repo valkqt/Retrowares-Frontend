@@ -8,9 +8,7 @@
 }
 
 .Table {
-    height: 800px;
-    width: auto;
-    margin-bottom: 3rem;
+    margin-bottom: 3re  m;
     width: 100%;
 
 }
@@ -32,4 +30,15 @@
     color: red;
     transition: color 0.2s linear;
 
+}
+
+.DesktopTableCell {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .DesktopTableCell {
+        display: table-cell;
+    }
+    
 }
