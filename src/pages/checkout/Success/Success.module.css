@@ -4,3 +4,11 @@
     padding: 1rem 3rem;
     background-color: rgba(20,20,20,1);
 }
+
+.SuccessImage {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    object-fit: cover;
+
+}
