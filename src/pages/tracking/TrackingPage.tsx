@@ -50,7 +50,7 @@ export default function TrackingPage() {
                   <img src={i.product.image} className="img-fluid fitImage" />
                 </div>
                 <div className={css.OrderInfo}>
-                  <div className="flexBetween w-100">
+                  <div className="flexBetween gap-3 w-100">
                     <h4>{i.product.title}</h4>
                     <div className="productPrice">{i.product.price}$</div>
                   </div>

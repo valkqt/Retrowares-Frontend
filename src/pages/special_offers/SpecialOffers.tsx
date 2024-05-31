@@ -24,7 +24,7 @@ export default function SpecialOffers() {
       )}
       {offers && <div>
         <h2 className="text-center">Special offers</h2>
-        <div className="CardWrapper">
+        <div className="CardWrapperWrap">
           {offers
             .filter((o) => o.discountPercentage > 0)
             .map((o) => (
