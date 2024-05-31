@@ -97,8 +97,9 @@ section {
 
 .productPrice {
     font-size: 1.5rem;
-    color: greenyellow
+    color: greenyellow;
 }
+
 
 .productPriceSmall {
     color: var(--green);
