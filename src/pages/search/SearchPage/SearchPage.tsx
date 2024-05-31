@@ -44,17 +44,17 @@ function SearchPage({
               className={css.CustomSelect}
               onChange={(e) => setPlatform(e.target.value)}
             >
-              <option>Platforms</option>
+              <option value="">Platforms</option>
               <option value="PC-98">NEC PC-98</option>
-              <option value="MS-DOS">MS-DOS</option>
-              <option value="Apple">Apple</option>
+              <option value="DOS">MS-DOS</option>
+              <option value="Apple II">Apple</option>
             </Form.Select>
 
             <Form.Select
               className={css.CustomSelect}
               onChange={(e) => setGenre(e.target.value)}
             >
-              <option>Genres</option>
+              <option value="">Genres</option>
               <option value="action">Action</option>
               <option value="adventure">Adventure</option>
               <option value="strategy / tactics">Strategy/Tactics</option>
@@ -73,7 +73,7 @@ function SearchPage({
             <>
               <h1 className="text-center">Search Results</h1>
 
-              <div className="CardWrapper">
+              <div className="CardWrapperWrap">
                 {products.map((p) => {
                   return <Showcase key={p.id} item={p} />;
                 })}
