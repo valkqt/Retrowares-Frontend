@@ -4,7 +4,7 @@ export default function AboutUs() {
   return (
     <div>
       <h1 className="text-center">About Retrowares</h1>
-      <div className="text-center my-5">
+      <div className="text-center my-5 mw-100">
         <img src="/images/arcadebg.jpg" className={css.AboutImage} />
       </div>
 
@@ -26,7 +26,7 @@ export default function AboutUs() {
         and retro gaming news. Thank you for choosing Retrowares—let's keep
         celebrating the games that started it all!
       </p>
-      <div className="text-center my-5">
+      <div className="text-center my-5 mw-100">
         <img src="/images/citybg.png" className={css.AboutImage} />
       </div>
 
