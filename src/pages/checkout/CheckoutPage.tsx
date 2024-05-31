@@ -74,10 +74,10 @@ export default function CheckoutPage() {
                 }
                 )}
             </ div>
-            <div className="flex-grow-1">
+            <div className={css.OrderRecap}>
                 <div className="CustomCard">
                     <h2 className="darkHeader">Order Summary</h2>
-                    <div>
+                    <div className={css.DisplayedOnDesktop}>
                         {cart.map(i => {
                             return (
                                 <div className="flexBetween gap-5" key={i.productId}>
@@ -98,7 +98,7 @@ export default function CheckoutPage() {
                             }
                         });
                     }}>
-                        <hr />
+                        <hr className={css.DisplayedOnDesktop} />
                         <FormLabel>Your Email:</FormLabel>
                         <FormControl type="email" onChange={(e) => setEmail(e.target.value)} className="d-block" required/>
                         <div className="flexBetween mt-3">

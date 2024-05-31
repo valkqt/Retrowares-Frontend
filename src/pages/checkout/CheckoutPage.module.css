@@ -18,6 +18,28 @@
     overflow-y: auto;
 }
 
+.OrderRecap {
+    flex-grow: 1;
+    position: relative;
+}
+
+.DisplayedOnDesktop {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .OrderRecap {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }
+
+    .DisplayedOnDesktop {
+        display: none;
+    }
+}
+
 .ItemRecap {
     display: flex;
     flex-direction: column;
