@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+# Retrowares
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+http://retrowares.store/
 
-Currently, two official plugins are available:
+## What it is
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Retrowares is an e-commerce for retrogames, specifically old PC games.
 
-## Expanding the ESLint configuration
+At the moment users can add or remove items to a cart and edit quantity of items, proceed to checkout, and track the state of their order after successful payment. Products can be searched through the searchbar on top or using the "Browse" Tab which filters by platform, or alternatively check out the best offers.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech & Tools
 
-- Configure the top-level `parserOptions` property like this:
+Frontend:
+- React
+- Typescript
+- Bootstrap
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Backend:
+- .NET Core
+- API REST
+- Stripe (checkout & payment)
+- Sendgrid (mail service)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Roadmap
+
+- [x] Shop functionality
+- [x] Website Online
+- [x] Fully Responsive
+- [ ] Administrator functionality
