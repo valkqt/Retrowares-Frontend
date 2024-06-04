@@ -12,6 +12,7 @@ import useClickOutside from "../../methods/useClickOutside.ts";
 import classNames from "classnames";
 import { Product } from "@/types";
 import { useCart } from "@/contexts";
+import AccessDropdown from "./AccessDropdown/AccessDropdown.tsx";
 
 interface NavbarProps {
   setResults: (results: Product[]) => void;
@@ -101,7 +102,10 @@ function RetroNav({ setResults }: NavbarProps) {
                   Commodore 64
                 </Link>
               </NavDropdown>
+
             </div>
+            <AccessDropdown />
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>

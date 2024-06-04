@@ -51,6 +51,15 @@
     background-color: var(--bg-darkest);
 }
 
+.neuteredButtonLink {
+    color: white !important;
+    text-decoration: none;
+}
+
+.neuteredButtonLink:hover {
+    color: black !important;
+}
+
 .NavDropdown div a:hover {
     color: black !important;
 }
@@ -62,4 +71,16 @@
 .Zindex {
     z-index: 100;
     background-color: black;
+}
+
+.Modal {
+    background-color: var(--bg-darkest);
+}
+
+.InputsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 325px;
+    margin: 0 auto;
 }

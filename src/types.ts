@@ -52,3 +52,14 @@ export interface CheckoutPayload {
   email: string,
 }
 
+export interface RegisterModel {
+  username: string,
+  email: string, 
+  password: string
+}
+
+export interface LoginModel {
+  username: string,
+  password: string
+}
+
