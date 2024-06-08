@@ -14,12 +14,10 @@ export interface Product {
 }
 
 export interface CartItem {
-  productId: Product["id"];
-  title: string;
-  image: string;
-  price: number;
+  product: Product;
   quantity: number;
 }
+
 
 export interface Screenshot {
   id: number;
@@ -63,3 +61,16 @@ export interface LoginModel {
   password: string
 }
 
+export interface User {
+  id: number,
+  username: string,
+  cart: CartItem[],
+  role: number
+
+}
+
+export interface DbCartItem {
+  userId: number,
+  productId: number,
+  quantity: number
+}

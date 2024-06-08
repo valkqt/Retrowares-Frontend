@@ -1,16 +1,17 @@
+import { useUser } from "@/contexts/UserContext";
 import { Button } from "react-bootstrap";
+import { instance } from "@/api";
+import { addToDbCart } from "@/api";
+
 
 function Test() {
-  function plofi() {
-    fetch("https://localhost:7131/api/Products/pepe")
-      .then((res) => res.json())
-      .then((data) => console.log(JSON.parse(data.pepe)));
-  }
+  const [user,setUser] = useUser();
+  
 
   return (
     <div>
       <p>sono test!</p>
-      <Button onClick={plofi}>Test search query</Button>
+      <Button>Name: {user?.username}</Button>
     </div>
   );
 }

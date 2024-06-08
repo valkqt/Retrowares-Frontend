@@ -12,6 +12,7 @@ import SpecialOffers from "@/pages/special_offers/SpecialOffers"
 import PlatformPage from "@/pages/platform/PlatformPage"
 import TrackingPage from "@/pages/tracking/TrackingPage"
 import AboutUs from "@/pages/about/AboutUs"
+import Test from "../_temp/Test"
 
 
 export default function MainRouter() {
@@ -23,6 +24,7 @@ export default function MainRouter() {
             
             <RetroNav setResults={setResults} />
             <Container as="main" className="content">
+                <Test />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/search/:query?" element={<SearchPage products={results} setProducts={setResults}/>} />

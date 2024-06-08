@@ -49,23 +49,23 @@ export default function CheckoutPage() {
                 {cart.length === 0 && <p>Cart is empty!</p>}
                 {cart.map(i => {
                     return (
-                        <div key={i.productId} className={classNames(css.ProductContainer)}>
+                        <div key={i.product.id} className={classNames(css.ProductContainer)}>
                             <div>
-                                <Link to={`/Products/${i.productId}`} className="neuteredLink">
-                                    <img src={i.image} className={css.CheckoutImage} />
+                                <Link to={`/Products/${i.product.id}`} className="neuteredLink">
+                                    <img src={i.product.image} className={css.CheckoutImage} />
                                 </Link>
                             </div>
                             <div className={css.ItemRecap}>
                                 <div className="flexBetween gap-5">
                                     <h4>
-                                        <Link to={`/Products/${i.productId}`} className="neuteredLink">
-                                            {i.title}
+                                        <Link to={`/Products/${i.product.id}`} className="neuteredLink">
+                                            {i.product.title}
                                         </Link>
                                     </h4>
-                                    <RemoveHandler productId={i.productId} show={() => setPopup(true)} />
+                                    <RemoveHandler productId={i.product.id} show={() => setPopup(true)} />
                                 </div>
                                 <div className="flexBetween gap-5">
-                                    <div className="productPriceSmall">{i.price.toFixed(2)}$</div>
+                                    <div className="productPriceSmall">{i.product.price.toFixed(2)}$</div>
                                     <QuantityHandler item={i} />
                                 </div>
                             </div>
@@ -80,8 +80,8 @@ export default function CheckoutPage() {
                     <div className={css.DisplayedOnDesktop}>
                         {cart.map(i => {
                             return (
-                                <div className="flexBetween gap-5" key={i.productId}>
-                                    <p>{i.title}</p>
+                                <div className="flexBetween gap-5" key={i.product.id}>
+                                    <p>{i.product.title}</p>
                                     <div>x{i.quantity}</div>
                                 </div>
                             )
@@ -102,7 +102,7 @@ export default function CheckoutPage() {
                         <FormLabel>Your Email:</FormLabel>
                         <FormControl type="email" onChange={(e) => setEmail(e.target.value)} className="d-block" required/>
                         <div className="flexBetween mt-3">
-                            <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.price * value.quantity, 0).toFixed(2)}$</div>
+                            <div className="GenericFont">Total: {cart.reduce((total, value) => total + value.product.price * value.quantity, 0).toFixed(2)}$</div>
 
                             <Button type="submit" className="btn-danger">
                                 Proceed

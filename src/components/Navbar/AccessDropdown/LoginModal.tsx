@@ -1,6 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 import css from "../RetroNav.module.css";
-import { Login } from "@/api";
+import { login } from "@/api";
 import { useState } from "react";
 import { RegisterModel } from "@/types";
 
@@ -22,7 +22,7 @@ export default function LoginModal({show, setShow,}: LoginModalProps) {
       <form className={css.Modal}         onSubmit={(e) => {
           e.preventDefault();
           console.log(formData)
-          Login(formData);
+          login(formData);
         }}
 >
         <Modal.Header closeButton>
