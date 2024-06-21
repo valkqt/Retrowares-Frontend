@@ -23,9 +23,6 @@ export default function ScreenshotModal({ show, onHide, item }: ScreenshotModalP
 
             </figure>
 
-            {/* <figure className={css.Pepe}>
-                <figcaption>{item.caption}</figcaption>
-            </figure> */}
         </Modal>
     );
 }

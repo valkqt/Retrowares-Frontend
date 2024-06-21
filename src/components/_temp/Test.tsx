@@ -1,17 +1,29 @@
 import { useUser } from "@/contexts/UserContext";
 import { Button } from "react-bootstrap";
-import { instance } from "@/api";
-import { addToDbCart } from "@/api";
-
+import { toast } from "react-toastify";
 
 function Test() {
-  const [user,setUser] = useUser();
-  
+  const [user, ] = useUser();
+  const notify = () => toast.success("message woooo!");
 
   return (
     <div>
       <p>sono test!</p>
-      <Button>Name: {user?.username}</Button>
+
+      <Button
+        onClick={() => {
+          notify();
+        }}
+      >
+        CHECK STORE {user?.username}
+      </Button>
+      <Button
+        onClick={() => {
+          notify();
+        }}
+      >
+        POPUP: {user?.username}
+      </Button>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import css from "./RetroNav.module.css";
 import { getSearchResults } from "../../api/index";
 import { Product } from "@/types";
-import useClickOutside from "@/methods/useClickOutside";
+import useClickOutside from "@/hooks/useClickOutside";
 import classNames from "classnames";
 
 interface SearchbarProps {

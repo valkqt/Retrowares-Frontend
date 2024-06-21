@@ -66,11 +66,6 @@ export interface User {
   username: string,
   cart: CartItem[],
   role: number
+  token: string
 
-}
-
-export interface DbCartItem {
-  userId: number,
-  productId: number,
-  quantity: number
 }

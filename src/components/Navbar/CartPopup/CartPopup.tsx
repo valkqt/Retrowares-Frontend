@@ -21,10 +21,10 @@ export default function CartPopup({ items }: { items: CartItem[] }) {
         {items.length > 0 ? (
           items.map((i) => {
             return (
-              <div className="d-flex gap-3" key={i.productId}>
+              <div className="d-flex gap-3" key={i.product.id}>
                 <div
                   className={css.cartImage}
-                  style={{ backgroundImage: `url(${i.image})` }}
+                  style={{ backgroundImage: `url(${i.product.image})` }}
                 ></div>
                 <div className={css.ItemRecap}>
                   <div
@@ -35,21 +35,21 @@ export default function CartPopup({ items }: { items: CartItem[] }) {
                   >
                     <div>
                       <Link
-                        key={i.productId}
-                        to={`/Products/${i.productId}`}
+                        key={i.product.id}
+                        to={`/Products/${i.product.id}`}
                         className="neuteredLink"
                       >
-                        {i.title}
+                        {i.product.title}
                       </Link>
                     </div>
                     <RemoveHandler
-                      productId={i.productId}
+                      productId={i.product.id}
                       show={() => setPopup(true)}
                     />
                   </div>
                   <div className="flexBetween gap-3">
                     <div className="productPriceSmallest">
-                      {(i.price * i.quantity).toFixed(2)}$
+                      {(i.product.price * i.quantity).toFixed(2)}$
                     </div>
                     <QuantityHandler item={i} />
                   </div>

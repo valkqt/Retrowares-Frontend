@@ -8,7 +8,7 @@ import css from "./RetroNav.module.css";
 import Searchbar from "./Searchbar";
 import CartPopup from "./CartPopup/CartPopup";
 import { useState } from "react";
-import useClickOutside from "../../methods/useClickOutside.ts";
+import useClickOutside from "../../hooks/useClickOutside.ts";
 import classNames from "classnames";
 import { Product } from "@/types";
 import { useCart } from "@/contexts";

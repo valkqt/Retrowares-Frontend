@@ -7,9 +7,9 @@ import classNames from "classnames";
 import { Interweave } from "interweave";
 import { Button } from "react-bootstrap";
 import { Cart4 } from "react-bootstrap-icons";
-import { useCart } from "@/contexts/CartContext";
 import ScreenshotModal from "./ScreenshotModal/ScreenshotModal";
-import { usePopup } from "@/contexts";
+import { toast } from "react-toastify";
+import useAddToCart from "@/hooks/useAddToCart";
 
 function ProductPage() {
   const params = useParams();
@@ -18,8 +18,8 @@ function ProductPage() {
   const [related, setRelated] = useState<Product[]>([]);
   const [screenshotShow, setScreenshotShow] = useState(false);
   const [highlight, setHighlight] = useState<Screenshot>();
-  const [, addToCart] = useCart();
-  const [, setPopup, , setMessage] = usePopup();
+
+  const addToUserCart = useAddToCart();
 
   useEffect(() => {
     if (params.id) {
@@ -61,10 +61,13 @@ function ProductPage() {
 
             <Button
               className="btn-danger"
-              onClick={() => {
-                addToCart(product);
-                setPopup(true);
-                setMessage("Product added to cart");
+              onClick={async () => {
+                try {
+                  await addToUserCart(product);
+                  toast.success(`${product.title} successfully added to cart.`);
+                } catch (e) {
+                  toast.error(`Failed to add ${product.title} to cart.`);
+                }
               }}
             >
               <Cart4 size={16} />

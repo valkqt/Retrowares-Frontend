@@ -1,7 +1,10 @@
 import { createContext, useContext } from "react";
-import { User } from "@/types";
+import {  User } from "@/types";
 
-type UserContextData = [User | null, (data: User) => void]
+
+type SetUserFunction =  (data: User) => void
+
+type UserContextData = [User | null, SetUserFunction]
 
 export const UserContext = createContext<UserContextData>([null, () => {}]);
 

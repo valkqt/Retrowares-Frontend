@@ -1,26 +1,35 @@
-import { useCart, usePopup } from "@/contexts"
-import { XLg } from "react-bootstrap-icons"
+import useRemoveFromCart from "@/hooks/useRemoveFromCart";
+import { XLg } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 
-export default function RemoveHandler({ productId, show }: { productId: number, show: () => void }) {
-    const [_, __, removeFromCart] = useCart()
-    const [___, setPopup, ____, setMessage] = usePopup()
+export default function RemoveHandler({
+  productId,
+  show,
+}: {
+  productId: number;
+  show: () => void;
+}) {
+  const useRemoveItemFromCart = useRemoveFromCart();
 
-    return (
-        <>
-            <div onClick={() => {
-                if (confirm("Are you sure you want to delete this item?")) {
-                    removeFromCart(productId);
-                    show();
-                    setPopup(true);
-                    setMessage("Product removed from cart");
-
-                };
-
-            }} className="removeObject" title="Remove from cart">
-                <XLg />
-            </div>
-        </>
-
-
-    )
+  return (
+    <>
+      <div
+        onClick={async () => {
+          if (confirm("Are you sure you want to delete this item?")) {
+            try {
+              await useRemoveItemFromCart(productId);
+              toast.success(`Removed product from cart.`);
+            } catch (e) {
+              toast.error(`An error occurred`);
+            }
+            show();
+          }
+        }}
+        className="removeObject"
+        title="Remove from cart"
+      >
+        <XLg />
+      </div>
+    </>
+  );
 }

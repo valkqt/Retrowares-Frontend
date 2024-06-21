@@ -3,28 +3,41 @@ import css from "../RetroNav.module.css";
 import { login } from "@/api";
 import { useState } from "react";
 import { RegisterModel } from "@/types";
+import { toast } from "react-toastify";
 
 interface LoginModalProps {
   show: boolean;
   setShow: (state: boolean) => void;
 }
 
-
-export default function LoginModal({show, setShow,}: LoginModalProps) {
+export default function LoginModal({ show, setShow }: LoginModalProps) {
   const [formData, setFormData] = useState<RegisterModel>({
     username: "",
     password: "",
-    email: ""
+    email: "",
   });
+  const successNotify = () => toast.success("Login Successful!")
+  const failureNotify = () => toast.error("Login Failed!")
+
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
-      <form className={css.Modal}         onSubmit={(e) => {
+      <form
+        className={css.Modal}
+        onSubmit={(e) => {
           e.preventDefault();
-          console.log(formData)
-          login(formData);
+          login(formData)
+            .then((data) => {
+              localStorage.setItem("token", data.data.token)
+              successNotify();
+              window.location.reload()
+              
+            })
+            .catch(() => {
+              failureNotify();
+            });
         }}
->
+      >
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
@@ -39,7 +52,6 @@ export default function LoginModal({show, setShow,}: LoginModalProps) {
               onChange={(e) =>
                 setFormData({ ...formData, username: e.target.value })
               }
-
             />
             <input
               type="password"
@@ -49,7 +61,6 @@ export default function LoginModal({show, setShow,}: LoginModalProps) {
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
-
             />
           </div>
         </Modal.Body>

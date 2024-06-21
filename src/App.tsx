@@ -1,17 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import "./assets/fonts/fonts.css";
 import MainRouter from "./components/MainRouter/MainRouter.tsx";
-import { CartProvider, PopupProvider } from "@/contexts";
+import { CartProvider, } from "@/contexts";
 import { UserProvider } from "./contexts/UserContextProvider.tsx";
 
 function App() {
   return (
     <UserProvider>
       <CartProvider>
-        <PopupProvider>
           <MainRouter />
-        </PopupProvider>
       </CartProvider>
     </UserProvider>
   );

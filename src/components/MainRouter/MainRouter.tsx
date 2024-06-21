@@ -12,7 +12,8 @@ import SpecialOffers from "@/pages/special_offers/SpecialOffers"
 import PlatformPage from "@/pages/platform/PlatformPage"
 import TrackingPage from "@/pages/tracking/TrackingPage"
 import AboutUs from "@/pages/about/AboutUs"
-import Test from "../_temp/Test"
+// import Test from "../_temp/Test"
+import { ToastContainer } from "react-toastify"
 
 
 export default function MainRouter() {
@@ -24,7 +25,10 @@ export default function MainRouter() {
             
             <RetroNav setResults={setResults} />
             <Container as="main" className="content">
-                <Test />
+                {/* <Test /> */}
+                <ToastContainer position="top-center" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark"  />
+
+
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/search/:query?" element={<SearchPage products={results} setProducts={setResults}/>} />
