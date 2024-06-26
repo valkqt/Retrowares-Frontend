@@ -4,12 +4,10 @@ import css from "./SingleProduct.module.css"
 import { Button } from "react-bootstrap";
 import { Cart4 } from "react-bootstrap-icons";
 import { useCart } from "@/contexts/CartContext";
-import { usePopup } from "@/contexts";
 
 
 function SingleProduct({ product }: { product: Product }) {
     const [, addToCart] = useCart();
-    const [, setPopup, _, setMessage] = usePopup()
 
 
     return (
@@ -39,8 +37,6 @@ function SingleProduct({ product }: { product: Product }) {
                         <div>{product.genre}</div>
                         <Button className="btn-danger" onClick={() => {
                             addToCart(product); 
-                            setPopup(true);
-                            setMessage("Product added to cart.")
                             }}> <Cart4 size={16}></Cart4></Button>
                     </div>
                 </div>

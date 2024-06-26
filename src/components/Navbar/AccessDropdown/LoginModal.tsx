@@ -29,6 +29,7 @@ export default function LoginModal({ show, setShow }: LoginModalProps) {
           login(formData)
             .then((data) => {
               localStorage.setItem("token", data.data.token)
+              localStorage.setItem("refreshToken", data.data.refreshToken)
               successNotify();
               window.location.reload()
               

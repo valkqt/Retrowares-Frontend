@@ -3,26 +3,48 @@ import { useState } from "react";
 import css from "../RetroNav.module.css";
 import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
+import { useUser } from "@/contexts";
 
 export default function AccessDropdown() {
-    const [loginShow, setLoginShow] = useState(false)
-    const [registerShow, setRegisterShow] = useState(false)
+  const [loginShow, setLoginShow] = useState(false);
+  const [registerShow, setRegisterShow] = useState(false);
+  const [user] = useUser();
+
+  function Logout() {
+    localStorage.removeItem("token");
+    window.location.reload();
+  }
 
   return (
-      <NavDropdown
-        title="Access"
-        id="basic-nav-dropdown"
-        className={css.NavDropdown}
-      >
-        <NavDropdown.Item className={css.neuteredButtonLink} onClick={() => setLoginShow(true)}>
-          Login
+    <NavDropdown
+      title="Access"
+      id="basic-nav-dropdown"
+      className={css.NavDropdown}
+    >
+      {!user && (
+        <>
+          <NavDropdown.Item
+            className={css.neuteredButtonLink}
+            onClick={() => setLoginShow(true)}
+          >
+            Login
+          </NavDropdown.Item>
+          <LoginModal show={loginShow} setShow={setLoginShow} />
+          <NavDropdown.Item
+            className={css.neuteredButtonLink}
+            onClick={() => setRegisterShow(true)}
+          >
+            Register
+          </NavDropdown.Item>
+        </>
+      )}
+      {user && (
+        <NavDropdown.Item className={css.neuteredButtonLink} onClick={Logout}>
+          Logout
         </NavDropdown.Item>
-        <LoginModal show={loginShow} setShow={setLoginShow}/>
-        <NavDropdown.Item className={css.neuteredButtonLink} onClick={() => setRegisterShow(true)}>
-          Register
-        </NavDropdown.Item>
-        <RegisterModal show={registerShow} setShow={setRegisterShow}/>
+      )}
 
-      </NavDropdown>
+      <RegisterModal show={registerShow} setShow={setRegisterShow} />
+    </NavDropdown>
   );
 }

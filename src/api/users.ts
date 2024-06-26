@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { instance } from "./index";
-import { RegisterModel } from "@/types";
+import { RegisterModel, TokenApiModel } from "@/types";
 
 export async function Register(payload: RegisterModel): Promise<any> {
   return instance
@@ -10,6 +10,10 @@ export async function Register(payload: RegisterModel): Promise<any> {
 
 export async function login(payload: RegisterModel): Promise<AxiosResponse> {
   return instance.post("Auth/Login", JSON.stringify(payload));
+}
+
+export async function refreshToken(tokens: TokenApiModel) {
+  return instance.post("Auth/RefreshLogin", JSON.stringify(tokens))
 }
 
 export async function getUserData(): Promise<AxiosResponse> {

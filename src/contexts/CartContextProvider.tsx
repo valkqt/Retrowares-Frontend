@@ -1,9 +1,8 @@
 import { PropsWithChildren, useState, useEffect } from "react";
-import { CartItem, Product } from "@/types";
+import { CartItem, Product, TokenApiModel } from "@/types";
 import { CartContext } from "./CartContext";
 import { useUser } from "./UserContext";
-import { getUserData } from "@/api";
-import { toast } from "react-toastify";
+import { getUserData, refreshToken } from "@/api";
 
 export function CartProvider({ children }: PropsWithChildren) {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -13,20 +12,44 @@ export function CartProvider({ children }: PropsWithChildren) {
     const token = localStorage.getItem("token");
 
     if (token === null) {
-      const storageCart = JSON.parse(localStorage.getItem("cart") ?? "[]")
-      setCart(storageCart)
-      
+      const storageCart = JSON.parse(localStorage.getItem("cart") ?? "[]");
+      setCart(storageCart);
+
       return;
     }
 
     getUserData()
       .then((data) => {
-        const user = data.data
+        const user = data.data;
         setCart(user.cart);
         setUser(user);
       })
-      .catch(() => toast.error("Failed to retrieve user data."));
+      .catch(() => {
+        // localStorage.removeItem("token");
+        const tokens: TokenApiModel = {
+          accessToken: localStorage.getItem("token") || "",
+          refreshToken: localStorage.getItem("refreshToken") || "",
+        };
 
+        refreshToken(tokens)
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("refreshToken", response.data.refreshToken);
+          })
+          .then(() => {
+            getUserData()
+              .then((data) => {
+                const user = data.data;
+                setCart(user.cart);
+                setUser(user);
+              })
+              .catch();
+          })
+          .catch(() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("refreshToken");
+          });
+      });
   }, [cart.length]);
 
   function addToCart(product: Product): CartItem[] {

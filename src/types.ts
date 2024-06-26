@@ -45,8 +45,13 @@ export interface OrderItem {
   quantity: number;
 }
 
+export interface CheckoutCartItem {
+  productId: number,
+  quantity: number
+}
+
 export interface CheckoutPayload {
-  cart: CartItem[],
+  cart: CheckoutCartItem[],
   email: string,
 }
 
@@ -59,6 +64,11 @@ export interface RegisterModel {
 export interface LoginModel {
   username: string,
   password: string
+}
+
+export interface TokenApiModel {
+  accessToken: string,
+  refreshToken: string,
 }
 
 export interface User {

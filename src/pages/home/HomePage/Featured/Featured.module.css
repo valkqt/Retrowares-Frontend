@@ -1,8 +1,8 @@
 .FeatureRelation {
-    width: 300px;
     position: absolute;
     top: 0;
-    right: calc(-300px - 1rem);
+    right: -250px;
+    width: 250px;
     z-index: 10;
     background-color: var(--bg-darkest);
     animation: op-transition 0.15s linear;
@@ -16,12 +16,19 @@
     gap: 3rem;
     overflow-x: auto;
     width: 100%;
+    padding: 2rem 0;
 }
 
-.RelationContainer div {
+.RelationItem {
+    position: relative;
     width: 100px;
-    height: 150px
+    height: 150px;
 }
+
+/* .RelationContainer div {
+    width: 100px;
+    height: 150px;
+} */
 
 .Subtitle {
     font-size: 1rem;

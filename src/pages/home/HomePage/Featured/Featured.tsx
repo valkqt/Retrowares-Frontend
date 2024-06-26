@@ -11,7 +11,7 @@ function Relation({ relation }: { relation: Product }) {
   const [hover, setHover] = useState(false);
 
   return (
-    <div className="position-relative">
+    <div className={css.RelationItem}>
       <Link
         to={`/Products/${relation.id}`}
         onMouseOver={() => setHover(true)}
@@ -50,7 +50,7 @@ export default function Featured() {
         </div>
       )}
       {feature && (
-        <div>
+        <div >
           <div>
             <div className="text-center mb-3">
               <h1>{feature.title}</h1>
