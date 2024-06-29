@@ -2,8 +2,11 @@ import { Modal, Button } from "react-bootstrap";
 import css from "../RetroNav.module.css";
 import { login } from "@/api";
 import { useState } from "react";
-import { RegisterModel } from "@/types";
+import { LoginModel } from "@/types";
 import { toast } from "react-toastify";
+import { Check } from "react-bootstrap-icons";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 interface LoginModalProps {
   show: boolean;
@@ -11,28 +14,30 @@ interface LoginModalProps {
 }
 
 export default function LoginModal({ show, setShow }: LoginModalProps) {
-  const [formData, setFormData] = useState<RegisterModel>({
+  const [formData, setFormData] = useState<LoginModel>({
     username: "",
     password: "",
-    email: "",
+    persist: false,
   });
-  const successNotify = () => toast.success("Login Successful!")
-  const failureNotify = () => toast.error("Login Failed!")
-
+  const [checked, setChecked] = useState(false);
+  const successNotify = () => toast.success("Login Successful!");
+  const failureNotify = () => toast.error("Login Failed!");
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
       <form
-        className={css.Modal}
+        className="customModal"
         onSubmit={(e) => {
           e.preventDefault();
           login(formData)
             .then((data) => {
-              localStorage.setItem("token", data.data.token)
-              localStorage.setItem("refreshToken", data.data.refreshToken)
+              localStorage.setItem("token", data.data.token);
+              if (data.data.refreshToken != null) {
+                localStorage.setItem("refreshToken", data.data.refreshToken);
+              }
               successNotify();
-              window.location.reload()
-              
+              setShow(false)
+              window.setTimeout(() => window.location.reload(), 500)
             })
             .catch(() => {
               failureNotify();
@@ -63,16 +68,41 @@ export default function LoginModal({ show, setShow }: LoginModalProps) {
                 setFormData({ ...formData, password: e.target.value })
               }
             />
+            <div className="d-flex gap-3 justify-content-end align-items-center">
+              <label htmlFor="">Remember me?</label>
+              <div>
+                <input type="checkbox" style={{ display: "none" }} />
+                <div
+                  className={classNames(
+                    checked ? css.Checked : "",
+                    css.CheckboxContainer
+                  )}
+                  onClick={() => {
+                    setChecked(!checked);
+                    setFormData({ ...formData, persist: !formData.persist });
+                  }}
+                >
+                  {checked && (
+                    <Check size={24} className={css.CustomCheckbox} />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </Modal.Body>
 
-        <Modal.Footer className="justify-content-center gap-5">
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Cancel
-          </Button>
-          <Button type="submit" variant="danger">
-            Proceed
-          </Button>
+        <Modal.Footer className="justify-content-between">
+          <div>
+            <Link to="/Account/Recovery" className="neuteredLink">Forgot Password?</Link>
+          </div>
+          <div className="d-flex gap-3">
+            <Button variant="secondary" onClick={() => setShow(false)}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="danger">
+              Proceed
+            </Button>
+          </div>
         </Modal.Footer>
       </form>
     </Modal>

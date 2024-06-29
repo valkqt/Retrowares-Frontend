@@ -1,6 +1,6 @@
 import css from "./AboutUs.module.css";
 
-export default function AboutUs() {
+export function AboutUs() {
   return (
     <div>
       <h1 className="text-center">About Retrowares</h1>

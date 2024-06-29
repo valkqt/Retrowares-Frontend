@@ -1,2 +1,2 @@
-export {default as RetroNav} from "./Navbar/RetroNav"
-export {default as Footer} from "./Footer/Footer"
+export * from "./Navbar/RetroNav.tsx"
+export * from "./Footer/Footer.tsx"

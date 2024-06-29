@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { getRelatedProducts } from "@/api";
 
-function SearchPage({
+export function SearchPage({
   products,
   setProducts,
 }: {
@@ -89,5 +89,3 @@ function SearchPage({
     </>
   );
 }
-
-export default SearchPage;

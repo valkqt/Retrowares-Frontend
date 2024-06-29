@@ -11,7 +11,7 @@ import RemoveHandler from "./RemoveHandler/RemoveHandler";
 import Success from "./Success/Success";
 import { checkoutSessionInit } from "@/api";
 
-export default function CheckoutPage() {
+export  function CheckoutPage() {
   const [message, setMessage] = useState("");
   const [searchParams] = useSearchParams();
   const [cart] = useCart();

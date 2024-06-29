@@ -8,7 +8,7 @@ import {
   Twitter,
 } from "react-bootstrap-icons";
 
-function Footer() {
+export function Footer() {
   return (
     <footer className={css.FooterWrapper}>
       <div className={css.FooterContents}>
@@ -40,5 +40,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

@@ -1,0 +1,14 @@
+.ProfileWrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+.MainUserInfo {
+    display: flex;
+}
+
+.UserControls {
+    display: flex;
+    justify-content: space-between;
+}

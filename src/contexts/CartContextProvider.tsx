@@ -18,6 +18,7 @@ export function CartProvider({ children }: PropsWithChildren) {
       return;
     }
 
+
     getUserData()
       .then((data) => {
         const user = data.data;

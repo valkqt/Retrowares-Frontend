@@ -1,6 +1,12 @@
 import { AxiosResponse } from "axios";
 import { instance } from "./index";
-import { RegisterModel, TokenApiModel } from "@/types";
+import {
+  ChangePasswordModel,
+  LoginModel,
+  RegisterModel,
+  ResetPasswordModel,
+  TokenApiModel,
+} from "@/types";
 
 export async function Register(payload: RegisterModel): Promise<any> {
   return instance
@@ -8,12 +14,12 @@ export async function Register(payload: RegisterModel): Promise<any> {
     .then((data) => console.log(data));
 }
 
-export async function login(payload: RegisterModel): Promise<AxiosResponse> {
+export async function login(payload: LoginModel): Promise<AxiosResponse> {
   return instance.post("Auth/Login", JSON.stringify(payload));
 }
 
 export async function refreshToken(tokens: TokenApiModel) {
-  return instance.post("Auth/RefreshLogin", JSON.stringify(tokens))
+  return instance.post("Auth/RefreshLogin", JSON.stringify(tokens));
 }
 
 export async function getUserData(): Promise<AxiosResponse> {
@@ -65,4 +71,18 @@ export async function removeFromDbCart(userId: number, productId: number) {
   instance.delete(`Users/${userId}/Cart/${productId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+}
+
+export async function changePassword(
+  userId: number,
+  passwords: ChangePasswordModel
+): Promise<void> {
+  const token = localStorage.getItem("token");
+  return instance.patch(`Users/${userId}`, JSON.stringify(passwords), {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function resetPassword(userInfo: ResetPasswordModel): Promise<void> {
+  return instance.post("Users/ResetPassword", JSON.stringify(userInfo))
 }

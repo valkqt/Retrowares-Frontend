@@ -7,7 +7,7 @@ import Featured from "./Featured/Featured.tsx";
 
 // import Test from "../../../components/_temp/Test.tsx";
 
-function HomePage() {
+export function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -98,6 +98,4 @@ function HomePage() {
       </div>
     </>
   );
-}
-
-export default HomePage;
+};

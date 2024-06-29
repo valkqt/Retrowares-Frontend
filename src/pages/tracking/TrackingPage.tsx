@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 
-export default function TrackingPage() {
+export function TrackingPage() {
   const [query, setQuery] = useState<string>("");
   const [order, setOrder] = useState<Order>();
   const [currentOrder, setCurrentOrder] = useState("")

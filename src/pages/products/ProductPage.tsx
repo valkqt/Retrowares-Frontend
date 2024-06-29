@@ -11,7 +11,7 @@ import ScreenshotModal from "./ScreenshotModal/ScreenshotModal";
 import { toast } from "react-toastify";
 import useAddToCart from "@/hooks/useAddToCart";
 
-function ProductPage() {
+export function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<Product>();
   const [isLoading, setIsLoading] = useState(true);
@@ -145,5 +145,3 @@ function ProductPage() {
     </>
   );
 }
-
-export default ProductPage;

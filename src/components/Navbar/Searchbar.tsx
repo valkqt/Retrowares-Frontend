@@ -54,8 +54,6 @@ export default function Searchbar({ setResults }: SearchbarProps) {
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [menuShow, setMenuShow] = useState(false);
 
-  console.log("searchbar render");
-
   function handleClickOutside() {
     setMenuShow(false);
   }

@@ -4,7 +4,7 @@ import { Product } from "@/types";
 import Showcase from "../home/Showcase/Showcase";
 import { Spinner } from "react-bootstrap";
 
-export default function SpecialOffers() {
+export function SpecialOffers() {
   const [offers, setOffers] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 

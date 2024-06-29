@@ -14,7 +14,7 @@ interface PaginationProps {
   active: number;
 }
 
-export default function PlatformPage() {
+export function PlatformPage() {
   const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [pageOffset, setPageOffset] = useState(0);

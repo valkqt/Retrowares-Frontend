@@ -18,7 +18,7 @@ interface NavbarProps {
   setResults: (results: Product[]) => void;
 }
 
-function RetroNav({ setResults }: NavbarProps) {
+export function RetroNav({ setResults }: NavbarProps) {
   const [popupShow, setPopupShow] = useState(false);
   const [cart] = useCart();
 
@@ -112,5 +112,3 @@ function RetroNav({ setResults }: NavbarProps) {
     </Container>
   );
 }
-
-export default RetroNav;

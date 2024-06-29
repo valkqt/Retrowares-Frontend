@@ -7,7 +7,6 @@ export const instance = axios.create({
     headers: {"Content-Type": "application/json"}
 })
 
-
 export * from './products'
 export * from "./highlights"
 export * from "./stripe"

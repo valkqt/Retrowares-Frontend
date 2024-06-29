@@ -56,19 +56,31 @@ export interface CheckoutPayload {
 }
 
 export interface RegisterModel {
-  username: string,
-  email: string, 
-  password: string
+  username: string;
+  email: string;
+  password: string;
 }
 
 export interface LoginModel {
-  username: string,
-  password: string
+  username: string;
+  password: string;
+  persist: boolean;
+
 }
 
 export interface TokenApiModel {
   accessToken: string,
   refreshToken: string,
+}
+
+export interface ChangePasswordModel {
+  currentPassword: string;
+  newPassword: string
+}
+
+export interface ResetPasswordModel {
+  email: string,
+  username: string
 }
 
 export interface User {
