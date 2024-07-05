@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { useState } from "react";
 import { Product } from "@/types";
-// import Test from "../_temp/Test"
+import Test from "../_temp/Test"
 import { ToastContainer } from "react-toastify";
 
 import { RetroNav, Footer } from "@/components/index.ts";
@@ -27,7 +27,7 @@ export default function MainRouter() {
       <div className="wrapper">
         <RetroNav setResults={setResults} />
         <Container as="main" className="content">
-          {/* <Test /> */}
+          <Test />
           <ToastContainer
             position="top-center"
             autoClose={1500}

@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-    baseURL: "//retrowares.store/api/",
-    // baseURL: "https://localhost:7131/",
+    baseURL: import.meta.env.VITE_API_BASEURL,
     timeout: 5000,
     headers: {"Content-Type": "application/json"}
 })

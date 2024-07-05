@@ -18,7 +18,6 @@ export interface CartItem {
   quantity: number;
 }
 
-
 export interface Screenshot {
   id: number;
   url: string;
@@ -46,13 +45,13 @@ export interface OrderItem {
 }
 
 export interface CheckoutCartItem {
-  productId: number,
-  quantity: number
+  productId: number;
+  quantity: number;
 }
 
 export interface CheckoutPayload {
-  cart: CheckoutCartItem[],
-  email: string,
+  cart: CheckoutCartItem[];
+  email: string;
 }
 
 export interface RegisterModel {
@@ -65,29 +64,35 @@ export interface LoginModel {
   username: string;
   password: string;
   persist: boolean;
+  googleId?: string;
+}
 
+export interface GoogleLoginModel {
+  id: number;
+  email: string;
+  name: string;
+  picture: string;
 }
 
 export interface TokenApiModel {
-  accessToken: string,
-  refreshToken: string,
+  accessToken: string;
+  refreshToken: string;
 }
 
 export interface ChangePasswordModel {
   currentPassword: string;
-  newPassword: string
+  newPassword: string;
 }
 
 export interface ResetPasswordModel {
-  email: string,
-  username: string
+  email: string;
+  username: string;
 }
 
 export interface User {
-  id: number,
-  username: string,
-  cart: CartItem[],
-  role: number
-  token: string
-
+  id: number;
+  username: string;
+  cart: CartItem[];
+  role: number;
+  token: string;
 }

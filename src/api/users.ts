@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import { instance } from "./index";
 import {
   ChangePasswordModel,
+  GoogleLoginModel,
   LoginModel,
   RegisterModel,
   ResetPasswordModel,
@@ -83,6 +84,12 @@ export async function changePassword(
   });
 }
 
-export async function resetPassword(userInfo: ResetPasswordModel): Promise<void> {
-  return instance.post("Users/ResetPassword", JSON.stringify(userInfo))
+export async function googleAccess(loginInfo: GoogleLoginModel) {
+  return instance.post(`Users/GoogleAccess`, JSON.stringify(loginInfo));
+}
+
+export async function resetPassword(
+  userInfo: ResetPasswordModel
+): Promise<void> {
+  return instance.post("Users/ResetPassword", JSON.stringify(userInfo));
 }

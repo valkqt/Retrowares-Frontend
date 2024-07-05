@@ -1,29 +1,71 @@
 import { useUser } from "@/contexts/UserContext";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { GoogleLogin, TokenResponse } from "@react-oauth/google";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useEffect } from "react";
+import axios from "axios";
+import { googleAccess, login } from "@/api";
+import { GoogleLoginModel } from "@/types";
 
 function Test() {
-  const [user, ] = useUser();
+  const [user, setUser] = useUser();
   const notify = () => toast.success("message woooo!");
+
+  const responseMessage = (response: any) => {
+    console.log(response);
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) =>
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${codeResponse.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          const user = res.data;
+          const loginInfo: GoogleLoginModel = {
+            id: user.id,
+            email: user.email,
+
+            name: user.name,
+            picture: user.picture,
+          };
+          googleAccess(loginInfo)
+            .then((data) => {
+              console.log(data);
+              login(data.data)
+                .then((data) => {
+                  localStorage.setItem("token", data.data.token);
+                  if (data.data.refreshToken != null) {
+                    localStorage.setItem(
+                      "refreshToken",
+                      data.data.refreshToken
+                    );
+                  }
+
+                  window.setTimeout(() => window.location.reload(), 500);
+                })
+                .catch(() => {});
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err)),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {}, []);
 
   return (
     <div>
       <p>sono test!</p>
-
-      <Button
-        onClick={() => {
-          notify();
-        }}
-      >
-        CHECK STORE {user?.username}
-      </Button>
-      <Button
-        onClick={() => {
-          notify();
-        }}
-      >
-        POPUP: {user?.username}
-      </Button>
+      <Button onClick={() => googleLogin()}>Try Login</Button>
     </div>
   );
 }
