@@ -1,12 +1,14 @@
 import { Modal, Button } from "react-bootstrap";
 import css from "../RetroNav.module.css";
-import { login } from "@/api";
+import { googleAccess, login } from "@/api";
 import { useState } from "react";
-import { LoginModel } from "@/types";
+import { GoogleLoginModel, LoginModel } from "@/types";
 import { toast } from "react-toastify";
 import { Check } from "react-bootstrap-icons";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 interface LoginModalProps {
   show: boolean;
@@ -23,6 +25,50 @@ export default function LoginModal({ show, setShow }: LoginModalProps) {
   const successNotify = () => toast.success("Login Successful!");
   const failureNotify = () => toast.error("Login Failed!");
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) =>
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${codeResponse.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          const user = res.data;
+          const loginInfo: GoogleLoginModel = {
+            id: user.id,
+            email: user.email,
+
+            name: user.name,
+            picture: user.picture,
+          };
+          googleAccess(loginInfo)
+            .then((data) => {
+              console.log(data);
+              login(data.data)
+                .then((data) => {
+                  localStorage.setItem("token", data.data.token);
+                  if (data.data.refreshToken != null) {
+                    localStorage.setItem(
+                      "refreshToken",
+                      data.data.refreshToken
+                    );
+                  }
+
+                  window.setTimeout(() => window.location.reload(), 500);
+                })
+                .catch(() => {});
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err)),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
   return (
     <Modal show={show} onHide={() => setShow(false)}>
       <form
@@ -36,8 +82,8 @@ export default function LoginModal({ show, setShow }: LoginModalProps) {
                 localStorage.setItem("refreshToken", data.data.refreshToken);
               }
               successNotify();
-              setShow(false)
-              window.setTimeout(() => window.location.reload(), 500)
+              setShow(false);
+              window.setTimeout(() => window.location.reload(), 500);
             })
             .catch(() => {
               failureNotify();
@@ -89,11 +135,22 @@ export default function LoginModal({ show, setShow }: LoginModalProps) {
               </div>
             </div>
           </div>
+          <div className="text-center pt-3">
+            <Button
+              variant="danger"
+              onClick={() => googleLogin()}
+              style={{ maxWidth: "200px" }}
+            >
+              Login with Google
+            </Button>
+          </div>
         </Modal.Body>
 
         <Modal.Footer className="justify-content-between">
           <div>
-            <Link to="/Account/Recovery" className="neuteredLink">Forgot Password?</Link>
+            <Link to="/Account/Recovery" className="neuteredLink">
+              Forgot Password?
+            </Link>
           </div>
           <div className="d-flex gap-3">
             <Button variant="secondary" onClick={() => setShow(false)}>

@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import css from "./Account.module.css";
 import { useUser } from "@/contexts";
 import { Button, Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { changePassword } from "@/api";
 import { toast } from "react-toastify";
-
+import { PencilSquare } from "react-bootstrap-icons";
+import classNames from "classnames";
 interface ChangePasswordModalProps {
   show: boolean;
   setShow: (state: boolean) => void;
@@ -14,6 +15,14 @@ interface ChangePasswordModalProps {
 export function Account() {
   const [user] = useUser();
   const [show, setShow] = useState(false);
+  const [editPicture, setEditPicture] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
 
   function ChangePasswordModal({ show, setShow }: ChangePasswordModalProps) {
     const [formData, setFormData] = useState({
@@ -81,9 +90,30 @@ export function Account() {
   return (
     <div className={css.ProfileWrapper}>
       <div className={css.MainUserInfo}>
-        <div>
-          <img />
-        </div>
+        <form>
+          <div className={css.UserPicture}>
+            <input type="file" className="d-none" id="userPicture" />
+            <label
+              htmlFor="userPicture"
+              role="button"
+              onMouseEnter={() => setEditPicture(true)}
+              onMouseLeave={() => setEditPicture(false)}
+            >
+              <div className={classNames("position-relative")}>
+                <img
+                  src={user?.picture ?? "/images/default.png"}
+                  className="object-fit-cover w-100 "
+                />
+                <div className={classNames(css.EditPencilBox, editPicture ? "d-block" : "d-none")}>
+                  <PencilSquare
+                    size={24}
+                  />
+                </div>
+              </div>
+            </label>
+          </div>
+        </form>
+
         <h4>{user?.username}</h4>
       </div>
       <div className={css.UserControls}>

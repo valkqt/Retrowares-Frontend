@@ -95,4 +95,5 @@ export interface User {
   cart: CartItem[];
   role: number;
   token: string;
+  picture?: string;
 }
