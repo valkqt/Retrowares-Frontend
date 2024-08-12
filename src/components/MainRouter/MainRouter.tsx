@@ -56,7 +56,6 @@ export default function MainRouter() {
             <Route path="/tracking" element={<TrackingPage />} />
             <Route path="/account" element={<Account />} />
             <Route path="/account/recovery" element={<Recovery />} />
-
           </Routes>
         </Container>
 
