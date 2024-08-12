@@ -1,20 +1,12 @@
-import { useUser } from "@/contexts/UserContext";
 import { Button } from "react-bootstrap";
-import { toast } from "react-toastify";
-import { GoogleLogin, TokenResponse } from "@react-oauth/google";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useEffect } from "react";
 import axios from "axios";
 import { googleAccess, login } from "@/api";
 import { GoogleLoginModel } from "@/types";
 
 function Test() {
-  const [user, setUser] = useUser();
-  const notify = () => toast.success("message woooo!");
 
-  const responseMessage = (response: any) => {
-    console.log(response);
-  };
 
   const googleLogin = useGoogleLogin({
     onSuccess: (codeResponse) =>
